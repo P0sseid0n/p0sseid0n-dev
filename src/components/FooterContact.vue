@@ -41,5 +41,3 @@ import { Icon } from '@iconify/vue'
     </div>
   </footer>
 </template>
-
-<style></style>
