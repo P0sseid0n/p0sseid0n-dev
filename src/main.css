@@ -1,0 +1,41 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #225277;
+  --color-accent: #00c2ff;
+  --color-background-light: #f1f2f4;
+  --color-background-dark: #14181f;
+  --color-card-dark: #1e242b;
+  --color-card-border: #2a3741;
+
+  --font-display: 'Space Grotesk', sans-serif;
+
+  --radius: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  --shadow-neon: 0 0 15px -3px rgba(0, 194, 255, 0.3);
+  --shadow-neon-strong: 0 0 20px -5px rgba(0, 194, 255, 0.6);
+
+  --animate-infinite-scroll: infinite-scroll 25s linear infinite;
+  --animate-vertical-scroll-up: vertical-scroll-up 10s linear infinite;
+  --animate-vertical-scroll-down: vertical-scroll-down 10s linear infinite;
+}
+
+body {
+  font-family: var(--font-display);
+}
+
+.text-glow {
+  text-shadow: 0 0 10px rgba(0, 194, 255, 0.3);
+}
+
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(to right, #2a3741 1px, transparent 1px),
+    linear-gradient(to bottom, #2a3741 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
