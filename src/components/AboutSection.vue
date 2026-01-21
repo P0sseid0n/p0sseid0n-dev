@@ -52,7 +52,7 @@ const hashtags = ['FrontEnd', 'BackEnd', 'FullStack', 'TypeScript', 'Python']
       <div class="space-y-4 text-gray-400 leading-relaxed max-w-2xl relative z-10 pr-16">
         <p>
           Me chamo Matheus, tenho {{ age }} anos, sou do Rio de Janeiro, Brasil. Sou desenvolvedor
-          <b>full stack</b>, atualmente focado em <b>front-end</b>, com forte domínio de
+          <b>full stack</b>, atualmente trabalhando com <b>front-end</b>, com forte domínio de
           <b>TypeScript</b>, {{ experience.years }} anos e {{ experience.months }} meses de
           experiência profissional.
         </p>
@@ -74,8 +74,3 @@ const hashtags = ['FrontEnd', 'BackEnd', 'FullStack', 'TypeScript', 'Python']
     </div>
   </section>
 </template>
-
-<style></style>
-te>
-
-<style></style>

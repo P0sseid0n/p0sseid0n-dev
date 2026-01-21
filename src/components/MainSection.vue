@@ -122,42 +122,13 @@ onMounted(loopTyping)
   </section>
 </template>
 
-<style>
-@keyframes text-slide {
-  0% {
-    transform: translateY(0%);
-  }
-  20% {
-    transform: translateY(0%);
-  }
-
-  25% {
-    transform: translateY(-100%);
-  }
-  45% {
-    transform: translateY(-100%);
-  }
-
-  50% {
-    transform: translateY(-200%);
-  }
-  70% {
-    transform: translateY(-200%);
-  }
-
-  75% {
-    transform: translateY(-300%);
-  }
-  95% {
-    transform: translateY(-300%);
-  }
-
-  100% {
-    transform: translateY(-400%);
-  }
-}
-
-.animate-text-slide {
-  animation: text-slide 10s infinite ease-in-out;
+<style scoped>
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(to right, #2a3741 1px, transparent 1px),
+    linear-gradient(to bottom, #2a3741 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
 }
 </style>

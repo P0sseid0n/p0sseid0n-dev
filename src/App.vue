@@ -22,5 +22,3 @@ import FooterContact from './components/FooterContact.vue'
     <FooterContact />
   </div>
 </template>
-
-<style scoped></style>

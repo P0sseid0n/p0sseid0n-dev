@@ -17,32 +17,16 @@
 
   --shadow-neon: 0 0 15px -3px rgba(0, 194, 255, 0.3);
   --shadow-neon-strong: 0 0 20px -5px rgba(0, 194, 255, 0.6);
-
-  --animate-infinite-scroll: infinite-scroll 25s linear infinite;
-  --animate-vertical-scroll-up: vertical-scroll-up 10s linear infinite;
-  --animate-vertical-scroll-down: vertical-scroll-down 10s linear infinite;
 }
 
 html,
 body {
   background-color: #0f1318;
+  background-color: linear-gradient(180deg, rgba(20, 24, 31, 1) 40%, rgba(15, 19, 24, 1) 60%);
   color-scheme: dark;
 }
 
 body {
   font-family: var(--font-display);
   padding-top: env(safe-area-inset-top);
-}
-
-.text-glow {
-  text-shadow: 0 0 10px rgba(0, 194, 255, 0.3);
-}
-
-.bg-grid-pattern {
-  background-image:
-    linear-gradient(to right, #2a3741 1px, transparent 1px),
-    linear-gradient(to bottom, #2a3741 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
 }

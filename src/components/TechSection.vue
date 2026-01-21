@@ -67,7 +67,7 @@ const list = [...technologies.sort(randomSort), ...technologies.sort(randomSort)
           :class="col > 2 ? 'hidden md:flex' : ''"
         >
           <div
-            class="flex flex-col gap-4 hover:[animation-play-state:paused]"
+            class="flex flex-col gap-4 hover:[animation-play-state:paused]!"
             :class="col % 2 ? 'animate-vertical-scroll-up' : 'animate-vertical-scroll-down'"
             :style="{ animationDuration: `${150 + col * 10}s` }"
           >
@@ -76,20 +76,6 @@ const list = [...technologies.sort(randomSort), ...technologies.sort(randomSort)
               :key="tech.name + i + col"
               class="p-4 rounded-xl bg-card-dark border border-card-border group hover:border-accent transition-all flex flex-col items-center justify-center gap-2 h-28 shrink-0"
             >
-              <!-- <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-10 h-10 text-gray-400 group-hover:text-accent transition-colors"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg> -->
               <Icon
                 :icon="tech.icon"
                 class="text-4xl text-gray-400 group-hover:text-accent transition-colors"
@@ -106,8 +92,19 @@ const list = [...technologies.sort(randomSort), ...technologies.sort(randomSort)
   </section>
 </template>
 
-<style>
-/* Keyframes */
+<style scoped>
+.animate-vertical-scroll-up {
+  animation: vertical-scroll-up 10s linear infinite;
+}
+
+.animate-vertical-scroll-down {
+  animation: vertical-scroll-down 10s linear infinite;
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 25s linear infinite;
+}
+
 @keyframes infinite-scroll {
   from {
     transform: translateX(0);

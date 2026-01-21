@@ -40,5 +40,3 @@ import { Icon } from '@iconify/vue'
     </div>
   </header>
 </template>
-
-<style></style>
