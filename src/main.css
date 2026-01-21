@@ -22,7 +22,7 @@
 html,
 body {
   background-color: #0f1318;
-  background-color: linear-gradient(180deg, rgba(20, 24, 31, 1) 40%, rgba(15, 19, 24, 1) 60%);
+  background-color: linear-gradient(180deg, var(--color-background-dark) 40%, #0f1318 60%);
   color-scheme: dark;
 }
 
