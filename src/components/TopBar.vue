@@ -11,7 +11,7 @@ import { Icon } from '@iconify/vue'
         <Icon icon="material-symbols:terminal" class="text-accent" />
         <h2 class="text-xl font-bold tracking-tight text-white">P0sseid0n</h2>
       </div>
-      <nav class="hidden md:flex items-center gap-8">
+      <nav class="hidden sm:flex items-center gap-8">
         <a
           class="text-sm font-medium text-gray-300 hover:text-accent transition-colors"
           href="#sobre"

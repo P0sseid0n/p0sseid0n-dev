@@ -38,11 +38,24 @@ const technologies = [
   { name: 'Prettier', icon: 'simple-icons:prettier' },
 ]
 
-function randomSort() {
-  return Math.random() - 0.5
+function shuffle<T>(array: T[]) {
+  return [...array].sort(() => Math.random() - 0.5)
 }
 
-const list = [...technologies.sort(randomSort), ...technologies.sort(randomSort)]
+const list = [...shuffle(technologies), ...shuffle(technologies)]
+
+function getResponsiveColumnVisibility(col: number) {
+  return (
+    {
+      1: '',
+      2: '',
+      3: 'hidden xs:flex',
+      4: 'hidden sm:flex',
+      5: 'hidden md:flex',
+      6: 'hidden lg:flex',
+    }[col] ?? ''
+  )
+}
 </script>
 
 <template>
@@ -50,7 +63,6 @@ const list = [...technologies.sort(randomSort), ...technologies.sort(randomSort)
     <div class="flex items-center justify-between mb-8">
       <h2 class="text-2xl font-bold text-white flex items-center gap-3">
         <Icon icon="material-symbols:memory" class="text-accent" />
-
         Tecnologias
       </h2>
       <div class="h-px flex-1 bg-card-border ml-6"></div>
@@ -59,12 +71,12 @@ const list = [...technologies.sort(randomSort), ...technologies.sort(randomSort)
     <div
       class="relative h-150 w-full overflow-hidden mask-[linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]"
     >
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4 h-full">
+      <div class="grid grid-flow-col auto-cols-fr gap-4 h-full">
         <div
           v-for="col in 6"
           :key="col"
           class="relative flex flex-col overflow-hidden"
-          :class="col > 2 ? 'hidden md:flex' : ''"
+          :class="getResponsiveColumnVisibility(col)"
         >
           <div
             class="flex flex-col gap-4 hover:[animation-play-state:paused]!"
@@ -73,7 +85,7 @@ const list = [...technologies.sort(randomSort), ...technologies.sort(randomSort)
           >
             <div
               v-for="(tech, i) in list"
-              :key="tech.name + i + col"
+              :key="`${tech.name}-${col}-${i}`"
               class="p-4 rounded-xl bg-card-dark border border-card-border group hover:border-accent transition-all flex flex-col items-center justify-center gap-2 h-28 shrink-0"
             >
               <Icon

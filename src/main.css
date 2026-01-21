@@ -17,6 +17,8 @@
 
   --shadow-neon: 0 0 15px -3px rgba(0, 194, 255, 0.3);
   --shadow-neon-strong: 0 0 20px -5px rgba(0, 194, 255, 0.6);
+
+  --breakpoint-xs: 35rem;
 }
 
 html,
