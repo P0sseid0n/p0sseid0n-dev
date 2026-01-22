@@ -69,14 +69,14 @@ onMounted(loopTyping)
   >
     <div class="absolute inset-0 z-0 bg-grid-pattern opacity-20 pointer-events-none"></div>
     <div class="flex flex-col gap-6 z-10 max-w-3xl items-center">
-      <div class="flex items-center justify-center gap-4 text-accent/80">
+      <div class="flex items-center justify-center gap-4 text-accent/80 mt-4">
         <span class="h-px w-8 bg-accent/50"></span>
         <h2 class="text-lg font-medium tracking-wide">Olá, eu sou</h2>
         <span class="h-px w-8 bg-accent/50"></span>
       </div>
       <div class="relative">
         <h1 class="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter">
-          {{ currentName }}<span class="text-accent">_</span>
+          {{ currentName }}<span class="text-accent animate-pulse">_</span>
         </h1>
         <button
           class="absolute -right-20 top-0 md:-right-16 md:top-4 md:bottom-auto rotate-6 md:rotate-12 opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
@@ -98,7 +98,7 @@ onMounted(loopTyping)
         </button>
       </div>
       <div
-        class="mt-4 flex items-center justify-center gap-3 text-2xl md:text-4xl font-bold text-gray-400 tracking-tight"
+        class="mt-2 flex items-center justify-center gap-2 text-2xl md:text-4xl font-bold text-gray-400 tracking-tight"
       >
         <span>Dev</span>
         <span class="text-accent">{{ role }}</span>
@@ -106,13 +106,13 @@ onMounted(loopTyping)
 
       <div class="flex flex-wrap justify-center gap-4 mt-6">
         <a
-          class="flex items-center justify-center rounded-lg bg-primary text-white h-12 px-8 text-base font-bold tracking-wide transition-all hover:bg-[#2a648f] hover:shadow-neon"
+          class="flex items-center justify-center rounded-lg bg-primary text-white h-12 px-8 text-base font-bold tracking-wide transition-all hover:bg-[#2a648f] hover:shadow-neon hover:scale-105"
           href="#projetos"
         >
           Ver Projetos
         </a>
         <a
-          class="flex items-center justify-center rounded-lg border border-gray-600 text-gray-300 h-12 px-8 text-base font-bold tracking-wide transition-all hover:border-accent hover:text-accent"
+          class="flex items-center justify-center rounded-lg border border-gray-600 text-gray-300 h-12 px-8 text-base font-bold tracking-wide transition-all hover:border-accent hover:text-accent hover:scale-105"
           href="#contato"
         >
           Contato
