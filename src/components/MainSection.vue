@@ -1,16 +1,10 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, type Ref } from 'vue'
 import { Icon } from '@iconify/vue'
 
 const currentName = ref('P0sseid0n')
 const otherName = computed(() => (currentName.value === 'P0sseid0n' ? 'Matheus' : 'P0sseid0n'))
 const rotationIcon = ref(0)
-
-function toggleName() {
-  currentName.value = otherName.value
-
-  rotationIcon.value += 360
-}
 
 const roles = [
   'Front-end',
@@ -27,40 +21,48 @@ const roles = [
 const role = ref(roles[0]!)
 let roleIndex = 0
 
-const TYPE_SPEED = 120
-const ERASE_SPEED = 80
-const HOLD_TIME = 4_500
-
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-async function type(text: string) {
-  role.value = ''
-  for (let i = 0; i < text.length; i++) {
-    role.value += text[i]
+async function toggleText(text: string, refVar: Ref<string>) {
+  const TYPE_SPEED = 130
+  const ERASE_SPEED = 70
+
+  console.log('Toggling text to:', text)
+
+  while (refVar.value.length > 0) {
+    refVar.value = refVar.value.slice(0, -1)
+    await sleep(ERASE_SPEED)
+  }
+
+  refVar.value = ''
+
+  for (const char of text) {
+    refVar.value += char
     await sleep(TYPE_SPEED)
   }
 }
 
-async function erase() {
-  while (role.value.length) {
-    role.value = role.value.slice(0, -1)
-    await sleep(ERASE_SPEED)
-  }
+function toggleName() {
+  toggleText(otherName.value, currentName)
+
+  rotationIcon.value += 360
 }
 
-async function loopTyping() {
-  while (true) {
-    await sleep(HOLD_TIME)
-    await erase()
+let intervalId: number
+onMounted(() => {
+  const HOLD_TIME = 4_500
 
+  intervalId = setInterval(async () => {
     roleIndex = (roleIndex + 1) % roles.length
-    await type(roles[roleIndex]!)
-  }
-}
+    await toggleText(roles[roleIndex]!, role)
+  }, HOLD_TIME)
+})
 
-onMounted(loopTyping)
+onUnmounted(() => {
+  clearInterval(intervalId)
+})
 </script>
 
 <template>
@@ -76,7 +78,7 @@ onMounted(loopTyping)
       </div>
       <div class="relative">
         <h1 class="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter">
-          {{ currentName }}<span class="text-accent animate-pulse">_</span>
+          {{ currentName }}<span class="text-accent animate-terminal-caret">_</span>
         </h1>
         <button
           class="absolute -right-20 top-0 md:-right-16 md:top-4 md:bottom-auto rotate-6 md:rotate-12 opacity-80 hover:opacity-100 transition-opacity cursor-pointer"

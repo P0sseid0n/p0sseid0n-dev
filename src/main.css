@@ -31,6 +31,17 @@
       opacity: 0.08;
     }
   }
+
+  --animate-terminal-caret: terminal-caret 0.5s ease-in-out infinite alternate;
+
+  @keyframes terminal-caret {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
 }
 
 html,
