@@ -2,7 +2,7 @@
 
 Portfolio pessoal feito com **Vue 3 + TypeScript**, **Vite** e **Tailwind CSS**, com foco em performance, design dark e seções bem definidas (Sobre, Tecnologias, Projetos e Contato).
 
-![Preview do projeto](./screenshot.jpeg)
+![Preview do projeto](./screenshot.png)
 
 ## Stack
 
