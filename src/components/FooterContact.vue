@@ -12,15 +12,25 @@ import AnimationMagnet from './AnimationMagnet.vue'
         contato.
       </p>
 
-      <AnimationMagnet>
+      <div class="flex flex-wrap justify-center gap-4">
+        <AnimationMagnet :padding="48">
+          <a
+            class="inline-flex items-center gap-2 rounded-lg bg-accent text-[#0f1318] px-6 py-3 font-bold hover:bg-white transition-colors"
+            href="mailto:matheuspossidoniom@outlook.com"
+          >
+            <Icon icon="material-symbols:mail" class="text-lg" />
+            Mandar Mensagem
+          </a>
+        </AnimationMagnet>
         <a
-          class="inline-flex items-center gap-2 rounded-lg bg-accent text-[#0f1318] px-6 py-3 font-bold hover:bg-white transition-colors"
-          href="mailto:matheuspossidoniom@outlook.com"
+          class="inline-flex items-center gap-2 rounded-lg border border-accent text-accent px-6 py-3 font-bold hover:bg-accent/10 transition-colors shadow-neon"
+          href="https://docs.google.com/document/d/1rLACVhPBc8_sdbDZ1i05ssPZ02NsAOq3yxJHEB-PdH4/export?format=pdf&tab=1"
+          download
         >
-          <Icon icon="material-symbols:mail" class="text-lg" />
-          Mandar Mensagem
+          <Icon icon="material-symbols:download" class="text-lg" />
+          Baixar CV
         </a>
-      </AnimationMagnet>
+      </div>
       <div class="flex gap-8 mt-12">
         <a
           class="text-gray-500 hover:text-accent transition-colors"
