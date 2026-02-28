@@ -29,8 +29,6 @@ async function toggleText(text: string, refVar: Ref<string>) {
   const TYPE_SPEED = 130
   const ERASE_SPEED = 70
 
-  console.log('Toggling text to:', text)
-
   while (refVar.value.length > 0) {
     refVar.value = refVar.value.slice(0, -1)
     await sleep(ERASE_SPEED)
@@ -50,18 +48,21 @@ function toggleName() {
   rotationIcon.value += 360
 }
 
-let intervalId: number
-onMounted(() => {
-  const HOLD_TIME = 4_500
+const HOLD_TIME = 4_500
+let timeoutId: ReturnType<typeof setTimeout>
 
-  intervalId = setInterval(async () => {
-    roleIndex = (roleIndex + 1) % roles.length
-    await toggleText(roles[roleIndex]!, role)
-  }, HOLD_TIME)
+async function cycleRoles() {
+  roleIndex = (roleIndex + 1) % roles.length
+  await toggleText(roles[roleIndex]!, role)
+  timeoutId = setTimeout(cycleRoles, HOLD_TIME)
+}
+
+onMounted(() => {
+  timeoutId = setTimeout(cycleRoles, HOLD_TIME)
 })
 
 onUnmounted(() => {
-  clearInterval(intervalId)
+  clearTimeout(timeoutId)
 })
 </script>
 
