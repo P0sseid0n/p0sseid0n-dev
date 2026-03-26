@@ -4,29 +4,31 @@
     "": {
       "name": "p0sseid0n",
       "dependencies": {
-        "@tailwindcss/vite": "latest",
-        "gsap": "latest",
-        "tailwindcss": "latest",
-        "vue": "latest",
+        "@fontsource/space-grotesk": "^5.2.10",
+        "@tailwindcss/vite": "^4.2.1",
+        "gsap": "^3.14.2",
+        "tailwindcss": "^4.2.1",
+        "vue": "^3.5.29",
       },
       "devDependencies": {
-        "@iconify/vue": "latest",
-        "@tsconfig/node24": "latest",
-        "@unhead/vue": "latest",
-        "@vitejs/plugin-vue": "latest",
-        "@vue/eslint-config-prettier": "latest",
-        "@vue/eslint-config-typescript": "latest",
-        "@vue/tsconfig": "latest",
-        "eslint": "latest",
-        "eslint-plugin-vue": "latest",
-        "jiti": "latest",
-        "npm-run-all2": "latest",
-        "prettier": "latest",
-        "typescript": "latest",
-        "vite": "latest",
-        "vite-plugin-vue-devtools": "latest",
-        "vite-ssg": "latest",
-        "vue-tsc": "latest",
+        "@iconify/vue": "^5.0.0",
+        "@tsconfig/node24": "^24.0.4",
+        "@types/node": "^25.3.2",
+        "@unhead/vue": "^2.1.9",
+        "@vitejs/plugin-vue": "^6.0.4",
+        "@vue/eslint-config-prettier": "^10.2.0",
+        "@vue/eslint-config-typescript": "^14.7.0",
+        "@vue/tsconfig": "^0.8.1",
+        "eslint": "^10.0.2",
+        "eslint-plugin-vue": "~10.8.0",
+        "jiti": "^2.6.1",
+        "npm-run-all2": "^8.0.4",
+        "prettier": "3.8.1",
+        "typescript": "~5.9.3",
+        "vite": "^7.3.1",
+        "vite-plugin-vue-devtools": "^8.0.6",
+        "vite-ssg": "^28.3.0",
+        "vue-tsc": "^3.2.5",
       },
     },
   },
@@ -181,6 +183,8 @@
 
     "@exodus/bytes": ["@exodus/bytes@1.14.1", "", { "peerDependencies": { "@noble/hashes": "^1.8.0 || ^2.0.0" }, "optionalPeers": ["@noble/hashes"] }, "sha512-OhkBFWI6GcRMUroChZiopRiSp2iAMvEBK47NhJooDqz1RERO4QuZIZnjP63TXX8GAiLABkYmX+fuQsdJ1dd2QQ=="],
 
+    "@fontsource/space-grotesk": ["@fontsource/space-grotesk@5.2.10", "", {}, "sha512-XNXEbT74OIITPqw2H6HXwPDp85fy43uxfBwFR5PU+9sLnjuLj12KlhVM9nZVN6q6dlKjkuN8JisW/OBxwxgUew=="],
+
     "@humanfs/core": ["@humanfs/core@0.19.1", "", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 
     "@humanfs/node": ["@humanfs/node@0.16.7", "", { "dependencies": { "@humanfs/core": "^0.19.1", "@humanwhocodes/retry": "^0.4.0" } }, "sha512-/zUx+yOsIrG4Y43Eh2peDeKCxlRt/gET6aHfaKpuq267qXdYDFViVHfMaLyygZOnl0kGWxFIgsBy8QFuTLUXEQ=="],
@@ -305,7 +309,7 @@
 
     "@types/json-schema": ["@types/json-schema@7.0.15", "", {}, "sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA=="],
 
-    "@types/node": ["@types/node@25.0.9", "", { "dependencies": { "undici-types": "~7.16.0" } }, "sha512-/rpCXHlCWeqClNBwUhDcusJxXYDjZTyE8v5oTO7WbL8eij2nKhUeU89/6xgjU7N4/Vh3He0BtyhJdQbDyhiXAw=="],
+    "@types/node": ["@types/node@25.5.0", "", { "dependencies": { "undici-types": "~7.18.0" } }, "sha512-jp2P3tQMSxWugkCUKLRPVUpGaL5MVFwF8RDuSRztfwgN1wmqJeMSbKlnEtQqU8UrhTmzEmZdu2I6v2dpp7XIxw=="],
 
     "@typescript-eslint/eslint-plugin": ["@typescript-eslint/eslint-plugin@8.56.1", "", { "dependencies": { "@eslint-community/regexpp": "^4.12.2", "@typescript-eslint/scope-manager": "8.56.1", "@typescript-eslint/type-utils": "8.56.1", "@typescript-eslint/utils": "8.56.1", "@typescript-eslint/visitor-keys": "8.56.1", "ignore": "^7.0.5", "natural-compare": "^1.4.0", "ts-api-utils": "^2.4.0" }, "peerDependencies": { "@typescript-eslint/parser": "^8.56.1", "eslint": "^8.57.0 || ^9.0.0 || ^10.0.0", "typescript": ">=4.8.4 <6.0.0" } }, "sha512-Jz9ZztpB37dNC+HU2HI28Bs9QXpzCz+y/twHOwhyrIRdbuVDxSytJNDl6z/aAKlaRIwC7y8wJdkBv7FxYGgi0A=="],
 
@@ -767,7 +771,7 @@
 
     "undici": ["undici@7.22.0", "", {}, "sha512-RqslV2Us5BrllB+JeiZnK4peryVTndy9Dnqq62S3yYRRTj0tFQCwEniUy2167skdGOy3vqRzEvl1Dm4sV2ReDg=="],
 
-    "undici-types": ["undici-types@7.16.0", "", {}, "sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw=="],
+    "undici-types": ["undici-types@7.18.2", "", {}, "sha512-AsuCzffGHJybSaRrmr5eHr81mwJU3kjw6M+uprWvCXiNeN9SOGwQ3Jn8jb8m3Z6izVgknn1R0FTCEAP2QrLY/w=="],
 
     "unhead": ["unhead@2.1.9", "", { "dependencies": { "hookable": "^6.0.1" } }, "sha512-4GvP6YeJQzo9J3g9fFZUJOH6jacUp5JgJ0/zC8eZrt8Dwompg9SuOSfrYbZaEzsfMPgQc4fsEjMoY9WzGPOChg=="],
 
