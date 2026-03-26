@@ -84,15 +84,15 @@ const projects: Project[] = [
         <p class="text-gray-400 text-sm leading-relaxed mb-6 grow">
           {{ project.description }}
         </p>
-        <div class="flex flex-wrap gap-2 mb-4">
-          <span
+        <ul class="flex flex-wrap gap-2 mb-4">
+          <li
             v-for="tech in project.technologies"
             :key="tech"
             class="text-xs font-medium text-[#9bb0bf] bg-background-dark px-2 py-1 rounded border border-card-border"
           >
             {{ tech }}
-          </span>
-        </div>
+          </li>
+        </ul>
         <div class="flex items-center gap-4 mt-auto pt-4 border-t border-card-border">
           <a
             v-if="project.codeLink"
