@@ -87,6 +87,7 @@ function getResponsiveColumnVisibility(col: number) {
               v-for="(tech, i) in list"
               :key="`${tech.name}-${col}-${i}`"
               class="p-4 rounded-xl bg-card-dark border border-card-border group hover:border-accent transition-all flex flex-col items-center justify-center gap-2 h-28 shrink-0"
+              :aria-hidden="col !== 1"
             >
               <Icon
                 :icon="tech.icon"
