@@ -33,7 +33,7 @@ import AnimationMagnet from './AnimationMagnet.vue'
       </div>
       <div class="flex gap-8 mt-12">
         <a
-          class="text-gray-500 hover:text-accent transition-colors"
+          class="text-gray-400 hover:text-accent transition-colors"
           href="https://github.com/P0sseid0n"
           target="_blank"
         >
@@ -41,7 +41,7 @@ import AnimationMagnet from './AnimationMagnet.vue'
           <Icon icon="simple-icons:github" class="size-6" />
         </a>
         <a
-          class="text-gray-500 hover:text-accent transition-colors"
+          class="text-gray-400 hover:text-accent transition-colors"
           href="https://www.linkedin.com/in/matheus-possidonio/"
           target="_blank"
         >
@@ -49,7 +49,7 @@ import AnimationMagnet from './AnimationMagnet.vue'
           <Icon icon="simple-icons:linkedin" class="size-6" />
         </a>
       </div>
-      <div class="mt-12 text-xs text-gray-600 font-mono">
+      <div class="mt-12 text-xs text-gray-400 font-mono">
         © 2026 P0sseid0n. All rights reserved.
       </div>
     </div>

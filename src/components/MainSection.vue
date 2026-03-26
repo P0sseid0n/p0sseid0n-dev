@@ -94,7 +94,7 @@ onUnmounted(() => {
               :style="{ transform: `rotate(${rotationIcon}deg)` }"
             />
 
-            <span class="text-xs font-mono text-gray-400 whitespace-nowrap">
+            <span class="text-xs font-mono text-gray-300 whitespace-nowrap">
               aka <span class="text-white font-bold">{{ otherName }}</span>
             </span>
           </div>
