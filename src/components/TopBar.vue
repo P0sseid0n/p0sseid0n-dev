@@ -4,7 +4,7 @@ import { Icon } from '@iconify/vue'
 
 <template>
   <header
-    class="fixed top-0 z-50 w-full border-b border-card-border bg-background-dark/80 backdrop-blur-md"
+    class="fixed top-0 z-50 w-full border-b border-card-border bg-background-dark backdrop-blur-md"
   >
     <div class="mx-auto flex h-16 max-w-240 items-center justify-between px-4 lg:px-0">
       <div class="flex items-center gap-2 text-white transition-transform hover:scale-105">
