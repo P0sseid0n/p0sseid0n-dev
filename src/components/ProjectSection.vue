@@ -64,25 +64,15 @@ const projects: Project[] = pinnedRepos
 
 <template>
   <section class="w-full max-w-240 mx-auto px-4 py-16 scroll-mt-20" id="projetos">
-    <div class="flex items-center justify-between mb-8">
-      <h2 class="text-2xl font-bold text-white flex items-center gap-3">
-        <Icon icon="material-symbols:rocket-launch" class="text-accent" />
-        Projetos Recentes
-      </h2>
-      <a
-        class="text-sm text-accent hover:text-white transition-colors flex items-center gap-1"
-        href="https://github.com/P0sseid0n?tab=repositories"
-        target="_blank"
-      >
-        Ver todos
-        <Icon icon="material-symbols:arrow-forward" class="text-sm" />
-      </a>
-    </div>
+    <h2 class="text-2xl font-bold text-white flex items-center gap-3 mb-8">
+      <Icon icon="material-symbols:rocket-launch" class="text-accent" />
+      Projetos Recentes
+    </h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <article
         v-for="project in projects"
         :key="project.title"
-        class="flex flex-col h-full rounded-xl border border-card-border bg-card-dark p-6 transition-all hover:border-primary hover:shadow-[0_0_20px_rgba(34,82,119,0.3)]"
+        class="flex flex-col h-full rounded-xl border border-card-border bg-card-dark p-6"
       >
         <div class="flex items-start justify-between mb-4">
           <h3 class="font-bold text-lg text-white">{{ project.title }}</h3>
@@ -90,6 +80,7 @@ const projects: Project[] = pinnedRepos
             class="flex items-center gap-1 text-sm text-gray-500 hover:text-white transition-colors"
             :href="project.codeLink"
             target="_blank"
+            rel="noopener"
             :title="`Dar estrela em ${project.title}`"
           >
             <Icon icon="material-symbols:star" class="text-[20px]" />
@@ -110,16 +101,20 @@ const projects: Project[] = pinnedRepos
         </ul>
         <div class="flex items-center gap-4 mt-auto pt-4 border-t border-card-border">
           <a
-            class="text-xs font-bold text-white hover:text-accent uppercase tracking-wider flex items-center gap-1"
+            class="text-sm font-bold text-white hover:text-accent transition-colors flex items-center gap-1"
             :href="project.codeLink"
+            target="_blank"
+            rel="noopener"
           >
             <Icon icon="material-symbols:code" class="text-base" />
             Código
           </a>
           <a
             v-if="project.previewLink"
-            class="text-xs font-bold text-white hover:text-accent uppercase tracking-wider flex items-center gap-1"
+            class="text-sm font-bold text-white hover:text-accent transition-colors flex items-center gap-1"
             :href="project.previewLink"
+            target="_blank"
+            rel="noopener"
           >
             <Icon icon="material-symbols:visibility" class="text-base" />
             Preview
@@ -131,6 +126,7 @@ const projects: Project[] = pinnedRepos
         class="flex flex-col h-full rounded-xl border border-dashed border-card-border bg-transparent p-6 items-center justify-center gap-4 group cursor-pointer hover:border-accent hover:bg-card-dark/50 transition-all"
         href="https://github.com/P0sseid0n?tab=repositories"
         target="_blank"
+        rel="noopener"
       >
         <div
           class="h-12 w-12 rounded-full bg-card-border flex items-center justify-center group-hover:bg-primary transition-colors"
