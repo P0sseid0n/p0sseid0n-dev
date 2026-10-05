@@ -4,7 +4,9 @@ import { Icon } from '@iconify/vue'
 import { prefersReducedMotion } from '@/utils/motion'
 
 const currentName = ref('P0sseid0n')
-const otherName = computed(() => (currentName.value === 'P0sseid0n' ? 'Matheus' : 'P0sseid0n'))
+// Nome final da troca; currentName pode estar no meio da digitação
+const targetName = ref('P0sseid0n')
+const otherName = computed(() => (targetName.value === 'P0sseid0n' ? 'Matheus' : 'P0sseid0n'))
 const rotationIcon = ref(0)
 
 const roles = [
@@ -26,7 +28,14 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
+// Última animação iniciada para cada texto; uma nova cancela a anterior
+const activeRuns = new WeakMap<Ref<string>, number>()
+
 async function toggleText(text: string, refVar: Ref<string>) {
+  const run = (activeRuns.get(refVar) ?? 0) + 1
+  activeRuns.set(refVar, run)
+  const cancelled = () => activeRuns.get(refVar) !== run
+
   if (prefersReducedMotion()) {
     refVar.value = text
     return
@@ -38,18 +47,19 @@ async function toggleText(text: string, refVar: Ref<string>) {
   while (refVar.value.length > 0) {
     refVar.value = refVar.value.slice(0, -1)
     await sleep(ERASE_SPEED)
+    if (cancelled()) return
   }
-
-  refVar.value = ''
 
   for (const char of text) {
     refVar.value += char
     await sleep(TYPE_SPEED)
+    if (cancelled()) return
   }
 }
 
 function toggleName() {
-  toggleText(otherName.value, currentName)
+  targetName.value = otherName.value
+  toggleText(targetName.value, currentName)
 
   rotationIcon.value += 360
 }
