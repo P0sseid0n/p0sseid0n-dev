@@ -42,7 +42,15 @@ function shuffle<T>(array: T[]) {
   return [...array].sort(() => Math.random() - 0.5)
 }
 
-const list = [...shuffle(technologies), ...shuffle(technologies)]
+const shuffled = shuffle(technologies)
+
+// Cada coluna começa num ponto diferente da lista para não repetir as vizinhas.
+// A lista é duplicada para o loop da animação (translateY -50%) ficar contínuo.
+function columnList(col: number) {
+  const offset = Math.floor((col * shuffled.length) / 6)
+  const rotated = [...shuffled.slice(offset), ...shuffled.slice(0, offset)]
+  return [...rotated, ...rotated]
+}
 
 function getResponsiveColumnVisibility(col: number) {
   return (
@@ -84,7 +92,7 @@ function getResponsiveColumnVisibility(col: number) {
             :style="{ animationDuration: `${150 + col * 10}s` }"
           >
             <div
-              v-for="(tech, i) in list"
+              v-for="(tech, i) in columnList(col)"
               :key="`${tech.name}-${col}-${i}`"
               class="p-4 rounded-xl bg-card-dark border border-card-border group hover:border-accent transition-all flex flex-col items-center justify-center gap-2 h-28 shrink-0"
               :aria-hidden="col !== 1"
