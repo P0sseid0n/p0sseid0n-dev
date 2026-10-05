@@ -86,10 +86,15 @@ const projects: Project[] = pinnedRepos
       >
         <div class="flex items-start justify-between mb-4">
           <h3 class="font-bold text-lg text-white">{{ project.title }}</h3>
-          <span class="flex items-center gap-1 text-sm text-gray-500">
+          <a
+            class="flex items-center gap-1 text-sm text-gray-500 hover:text-white transition-colors"
+            :href="project.codeLink"
+            target="_blank"
+            :title="`Dar estrela em ${project.title}`"
+          >
             <Icon icon="material-symbols:star" class="text-[20px]" />
             {{ project.stars }}
-          </span>
+          </a>
         </div>
         <p class="text-gray-400 text-sm leading-relaxed mb-6 grow">
           {{ project.description }}
