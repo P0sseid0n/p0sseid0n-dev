@@ -1,42 +1,70 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
+
+const links = [
+  { href: '#sobre', label: 'Sobre Mim' },
+  { href: '#tecnologias', label: 'Tecnologias' },
+  { href: '#projetos', label: 'Projetos' },
+  { href: '#contato', label: 'Contato' },
+]
+
+const menuOpen = ref(false)
 </script>
 
 <template>
   <header
-    class="fixed top-0 z-50 w-full border-b border-card-border bg-background-dark backdrop-blur-md"
+    class="fixed top-0 z-50 w-full border-b border-card-border bg-background-dark/80 backdrop-blur-md"
+    @keydown.esc="menuOpen = false"
   >
     <div class="mx-auto flex h-16 max-w-240 items-center justify-between px-4 lg:px-0">
-      <div class="flex items-center gap-2 text-white transition-transform hover:scale-105">
+      <a
+        class="flex items-center gap-2 text-xl font-bold tracking-tight text-white transition-transform hover:scale-105"
+        href="#"
+        @click="menuOpen = false"
+      >
         <Icon icon="material-symbols:terminal" class="text-accent" />
-        <h2 class="text-xl font-bold tracking-tight text-white">P0sseid0n</h2>
-      </div>
-      <nav class="hidden sm:flex items-center gap-8">
+        P0sseid0n
+      </a>
+      <nav class="hidden sm:flex items-center gap-8" aria-label="Principal">
         <a
+          v-for="link in links"
+          :key="link.href"
           class="text-sm font-medium text-gray-300 hover:text-accent transition-colors"
-          href="#sobre"
+          :href="link.href"
         >
-          Sobre Mim
-        </a>
-        <a
-          class="text-sm font-medium text-gray-300 hover:text-accent transition-colors"
-          href="#tecnologias"
-        >
-          Tecnologias
-        </a>
-        <a
-          class="text-sm font-medium text-gray-300 hover:text-accent transition-colors"
-          href="#projetos"
-        >
-          Projetos
-        </a>
-        <a
-          class="text-sm font-medium text-gray-300 hover:text-accent transition-colors"
-          href="#contato"
-        >
-          Contato
+          {{ link.label }}
         </a>
       </nav>
+      <button
+        class="sm:hidden -mr-2 p-2 text-gray-300 hover:text-accent transition-colors"
+        type="button"
+        :aria-expanded="menuOpen"
+        aria-controls="menu-mobile"
+        :aria-label="menuOpen ? 'Fechar menu' : 'Abrir menu'"
+        @click="menuOpen = !menuOpen"
+      >
+        <Icon
+          :icon="menuOpen ? 'material-symbols:close' : 'material-symbols:menu'"
+          class="text-2xl"
+        />
+      </button>
     </div>
+    <nav
+      v-show="menuOpen"
+      id="menu-mobile"
+      class="sm:hidden border-t border-card-border px-4 py-2"
+      aria-label="Principal"
+    >
+      <a
+        v-for="link in links"
+        :key="link.href"
+        class="block py-3 text-base font-medium text-gray-300 hover:text-accent transition-colors"
+        :href="link.href"
+        @click="menuOpen = false"
+      >
+        {{ link.label }}
+      </a>
+    </nav>
   </header>
 </template>
