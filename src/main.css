@@ -3,7 +3,6 @@
 @theme {
   --color-primary: #225277;
   --color-accent: #00c2ff;
-  --color-background-light: #f1f2f4;
   --color-background-dark: #14181f;
   --color-card-dark: #1e242b;
   --color-card-border: #2a3741;
@@ -46,17 +45,9 @@
 
 html,
 body {
-  background-color: var(--color-background-light, #f1f2f4);
-  color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  html,
-  body {
-    background-color: #0f1318;
-    background: linear-gradient(180deg, var(--color-background-dark, #14181f) 40%, #0f1318 60%);
-    color-scheme: dark;
-  }
+  background-color: #0f1318;
+  background: linear-gradient(180deg, var(--color-background-dark, #14181f) 40%, #0f1318 60%);
+  color-scheme: dark;
 }
 
 body {

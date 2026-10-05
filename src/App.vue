@@ -9,7 +9,7 @@ import FooterContact from './components/FooterContact.vue'
 
 <template>
   <div
-    class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden transition-colors duration-200"
+    class="relative flex h-auto min-h-screen w-full flex-col bg-background-dark overflow-x-hidden"
   >
     <TopBar />
 
