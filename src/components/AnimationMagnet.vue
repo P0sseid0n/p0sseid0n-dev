@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watch, useTemplateRef } from 'vue'
+import { prefersReducedMotion } from '@/utils/motion'
 
 interface Props {
   padding?: number
@@ -55,6 +56,7 @@ const handleMouseMove = (e: MouseEvent) => {
 }
 
 onMounted(() => {
+  if (prefersReducedMotion()) return
   window.addEventListener('mousemove', handleMouseMove)
 })
 

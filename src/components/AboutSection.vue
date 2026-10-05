@@ -45,7 +45,7 @@ const hashtags = ['FrontEnd', 'BackEnd', 'FullStack', 'TypeScript', 'Python']
         class="rounded-2xl max-w-240 mx-auto bg-card-dark border border-card-border p-8 md:p-12 relative overflow-hidden"
       >
         <div
-          class="absolute top-[50%] -translate-y-[50%] right-0 p-12 pointer-events-none animate-soft-pulse"
+          class="absolute top-[50%] -translate-y-[50%] right-0 p-12 pointer-events-none opacity-[0.06] animate-soft-pulse"
         >
           <Icon icon="material-symbols:fingerprint" class="text-[200px] text-white" />
         </div>

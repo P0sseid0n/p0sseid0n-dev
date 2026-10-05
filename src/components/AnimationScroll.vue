@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted, watch, useTemplateRef } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { prefersReducedMotion } from '@/utils/motion'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -41,7 +42,7 @@ const containerRef = useTemplateRef<HTMLDivElement>('containerRef')
 
 onMounted(() => {
   const el = containerRef.value
-  if (!el) return
+  if (!el || prefersReducedMotion()) return
 
   const axis = props.direction === 'horizontal' ? 'x' : 'y'
   const offset = props.reverse ? -props.distance : props.distance
@@ -85,7 +86,7 @@ watch(
   ],
   () => {
     const el = containerRef.value
-    if (!el) return
+    if (!el || prefersReducedMotion()) return
 
     ScrollTrigger.getAll().forEach((t) => t.kill())
     gsap.killTweensOf(el)

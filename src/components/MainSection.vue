@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, type Ref } from 'vue'
 import { Icon } from '@iconify/vue'
+import { prefersReducedMotion } from '@/utils/motion'
 
 const currentName = ref('P0sseid0n')
 const otherName = computed(() => (currentName.value === 'P0sseid0n' ? 'Matheus' : 'P0sseid0n'))
@@ -26,6 +27,11 @@ function sleep(ms: number) {
 }
 
 async function toggleText(text: string, refVar: Ref<string>) {
+  if (prefersReducedMotion()) {
+    refVar.value = text
+    return
+  }
+
   const TYPE_SPEED = 130
   const ERASE_SPEED = 70
 
@@ -58,6 +64,7 @@ async function cycleRoles() {
 }
 
 onMounted(() => {
+  if (prefersReducedMotion()) return
   timeoutId = setTimeout(cycleRoles, HOLD_TIME)
 })
 
