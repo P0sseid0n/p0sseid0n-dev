@@ -81,7 +81,7 @@ onUnmounted(() => {
     <div class="flex flex-col gap-6 z-10 max-w-3xl items-center">
       <div class="flex items-center justify-center gap-4 text-accent/80 mt-4">
         <span class="h-px w-8 bg-accent/50"></span>
-        <h2 class="text-lg font-medium tracking-wide">Olá, eu sou</h2>
+        <p class="text-lg font-medium tracking-wide">Olá, eu sou</p>
         <span class="h-px w-8 bg-accent/50"></span>
       </div>
       <div class="relative">
