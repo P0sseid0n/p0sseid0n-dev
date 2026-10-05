@@ -1,25 +1,23 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+import pinnedRepos from 'virtual:github-pinned'
+
 interface Project {
   title: string
   description: string
   technologies: string[]
-  codeLink?: string
+  stars: number
+  codeLink: string
   previewLink?: string
-  docsLink?: string
 }
 
-const projects: Project[] = [
-  {
-    title: 'Placar',
-    description: 'Projeto para contabilizar em tempo real pontos de qualquer competição',
+// Dados extras que o GitHub não fornece, indexados pelo nome do repositório
+const extras: Record<string, Partial<Pick<Project, 'title' | 'technologies' | 'previewLink'>>> = {
+  Placar: {
     technologies: ['Nuxt.js', 'Vue.js', 'Pinia', 'Supabase', 'Scss'],
-    codeLink: 'https://github.com/P0sseid0n/Placar',
   },
-  {
+  pomoshot: {
     title: 'Pomoshot',
-    description:
-      'Transforme suas capturas de tela em um plano de estudo Pomodoro estruturado com IA.',
     technologies: [
       'React',
       'TypeScript',
@@ -29,13 +27,9 @@ const projects: Project[] = [
       'Eden Treaty',
       'Google GenAI',
     ],
-    codeLink: 'https://github.com/P0sseid0n/pomoshot',
-    previewLink: 'https://pomoshot.p0sseid0n.dev/',
   },
-  {
+  'jobs-scraper': {
     title: 'Jobs Scraper',
-    description:
-      'Este projeto é um pipeline completo para coleta, processamento, armazenamento e divulgação de vagas de emprego extraídas do LinkedIn',
     technologies: [
       'Node.js',
       'TypeScript',
@@ -45,9 +39,27 @@ const projects: Project[] = [
       'Discord.js',
       'IA generativa',
     ],
-    codeLink: 'https://github.com/P0sseid0n/jobs-scraper',
   },
-]
+}
+
+// O próprio portfólio não aparece na lista de projetos
+const ignored = ['p0sseid0n-dev']
+
+const projects: Project[] = pinnedRepos
+  .filter((repo) => !ignored.includes(repo.name))
+  .map((repo) => {
+    const extra = extras[repo.name] ?? {}
+    return {
+      title: extra.title ?? repo.name,
+      description: repo.description,
+      technologies:
+        extra.technologies ??
+        (repo.topics.length ? repo.topics : repo.language ? [repo.language] : []),
+      stars: repo.stars,
+      codeLink: repo.url,
+      previewLink: extra.previewLink ?? repo.homepage ?? undefined,
+    }
+  })
 </script>
 
 <template>
@@ -74,12 +86,10 @@ const projects: Project[] = [
       >
         <div class="flex items-start justify-between mb-4">
           <h3 class="font-bold text-lg text-white">{{ project.title }}</h3>
-          <div class="flex gap-2">
-            <Icon
-              icon="material-symbols:star"
-              class="text-gray-500 hover:text-white cursor-pointer text-[20px]"
-            />
-          </div>
+          <span class="flex items-center gap-1 text-sm text-gray-500">
+            <Icon icon="material-symbols:star" class="text-[20px]" />
+            {{ project.stars }}
+          </span>
         </div>
         <p class="text-gray-400 text-sm leading-relaxed mb-6 grow">
           {{ project.description }}
@@ -95,7 +105,6 @@ const projects: Project[] = [
         </ul>
         <div class="flex items-center gap-4 mt-auto pt-4 border-t border-card-border">
           <a
-            v-if="project.codeLink"
             class="text-xs font-bold text-white hover:text-accent uppercase tracking-wider flex items-center gap-1"
             :href="project.codeLink"
           >
