@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
 import tailwindcss from '@tailwindcss/vite'
+import Icons from 'unplugin-icons/vite'
 
 import githubPinned from './plugins/githubPinned.ts'
 
@@ -14,7 +15,14 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
   return {
-    plugins: [vue(), vueDevTools(), tailwindcss(), githubPinned('P0sseid0n', env.GITHUB_TOKEN)],
+    plugins: [
+      vue(),
+      vueDevTools(),
+      tailwindcss(),
+      // Ícones viram componentes no build e o SVG sai direto no HTML
+      Icons({ compiler: 'vue3', scale: 1 }),
+      githubPinned('P0sseid0n', env.GITHUB_TOKEN),
+    ],
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),

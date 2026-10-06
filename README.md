@@ -1,6 +1,6 @@
 # P0sseid0n.dev
 
-Meu portfólio pessoal, feito com Vue 3, TypeScript, Tailwind CSS e GSAP.
+Meu portfólio pessoal, feito com Vue 3, TypeScript e Tailwind CSS.
 
 🔗 **[p0sseid0n.dev](https://p0sseid0n.dev)**
 
@@ -17,8 +17,7 @@ A seção de projetos é montada automaticamente durante o build: um plugin do V
 - **Vue 3** + **TypeScript**
 - **Vite** + **vite-ssg** (geração estática)
 - **Tailwind CSS 4**
-- **GSAP** (animações)
-- **Iconify** (`@iconify/vue`)
+- **unplugin-icons** (ícones do Iconify embutidos no build)
 
 ## Rodando localmente
 

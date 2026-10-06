@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Icon } from '@iconify/vue'
+import IconTerminal from '~icons/material-symbols/terminal'
+import IconMenu from '~icons/material-symbols/menu'
+import IconClose from '~icons/material-symbols/close'
 
 const links = [
   { href: '#sobre', label: 'Sobre Mim' },
@@ -23,7 +25,7 @@ const menuOpen = ref(false)
         href="#"
         @click="menuOpen = false"
       >
-        <Icon icon="material-symbols:terminal" class="text-accent" />
+        <IconTerminal class="text-accent" />
         P0sseid0n
       </a>
       <nav class="hidden sm:flex items-center gap-8" aria-label="Principal">
@@ -44,10 +46,8 @@ const menuOpen = ref(false)
         :aria-label="menuOpen ? 'Fechar menu' : 'Abrir menu'"
         @click="menuOpen = !menuOpen"
       >
-        <Icon
-          :icon="menuOpen ? 'material-symbols:close' : 'material-symbols:menu'"
-          class="text-2xl"
-        />
+        <IconClose v-if="menuOpen" class="text-2xl" />
+        <IconMenu v-else class="text-2xl" />
       </button>
     </div>
     <nav

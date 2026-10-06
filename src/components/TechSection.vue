@@ -1,41 +1,76 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
+import IconMemory from '~icons/material-symbols/memory'
+import SiHtml5 from '~icons/simple-icons/html5'
+import SiCss3 from '~icons/simple-icons/css3'
+import SiVuedotjs from '~icons/simple-icons/vuedotjs'
+import SiNuxt from '~icons/simple-icons/nuxt'
+import SiReact from '~icons/simple-icons/react'
+import SiNextdotjs from '~icons/simple-icons/nextdotjs'
+import SiTailwindcss from '~icons/simple-icons/tailwindcss'
+import SiNodedotjs from '~icons/simple-icons/nodedotjs'
+import SiBun from '~icons/simple-icons/bun'
+import SiExpress from '~icons/simple-icons/express'
+import SiMongodb from '~icons/simple-icons/mongodb'
+import SiMysql from '~icons/simple-icons/mysql'
+import SiPostgresql from '~icons/simple-icons/postgresql'
+import SiPrisma from '~icons/simple-icons/prisma'
+import SiAdonisjs from '~icons/simple-icons/adonisjs'
+import SiNestjs from '~icons/simple-icons/nestjs'
+import SiJavascript from '~icons/simple-icons/javascript'
+import SiTypescript from '~icons/simple-icons/typescript'
+import SiPython from '~icons/simple-icons/python'
+import SiGo from '~icons/simple-icons/go'
+import SiLua from '~icons/simple-icons/lua'
+import SiGit from '~icons/simple-icons/git'
+import SiDocker from '~icons/simple-icons/docker'
+import SiFigma from '~icons/simple-icons/figma'
+import SiJest from '~icons/simple-icons/jest'
+import SiVitest from '~icons/simple-icons/vitest'
+import SiCypress from '~icons/simple-icons/cypress'
+import SiLinux from '~icons/simple-icons/linux'
+import SiGithub from '~icons/simple-icons/github'
+import SiVisualstudiocode from '~icons/simple-icons/visualstudiocode'
+import SiWebpack from '~icons/simple-icons/webpack'
+import SiVite from '~icons/simple-icons/vite'
+import SiEslint from '~icons/simple-icons/eslint'
+import SiPrettier from '~icons/simple-icons/prettier'
+
 const technologies = [
-  { name: 'HTML', icon: 'simple-icons:html5' },
-  { name: 'CSS / SCSS', icon: 'simple-icons:css3' },
-  { name: 'Vue.js', icon: 'simple-icons:vuedotjs' },
-  { name: 'Nuxt.js', icon: 'simple-icons:nuxt' },
-  { name: 'React', icon: 'simple-icons:react' },
-  { name: 'Next.js', icon: 'simple-icons:nextdotjs' },
-  { name: 'Tailwind', icon: 'simple-icons:tailwindcss' },
-  { name: 'Node.js', icon: 'simple-icons:nodedotjs' },
-  { name: 'Bun', icon: 'simple-icons:bun' },
-  { name: 'Express', icon: 'simple-icons:express' },
-  { name: 'MongoDB', icon: 'simple-icons:mongodb' },
-  { name: 'MySQL', icon: 'simple-icons:mysql' },
-  { name: 'PostgreSQL', icon: 'simple-icons:postgresql' },
-  { name: 'Prisma', icon: 'simple-icons:prisma' },
-  { name: 'AdonisJS', icon: 'simple-icons:adonisjs' },
-  { name: 'NestJS', icon: 'simple-icons:nestjs' },
-  { name: 'React Native', icon: 'simple-icons:react' },
-  { name: 'JavaScript', icon: 'simple-icons:javascript' },
-  { name: 'TypeScript', icon: 'simple-icons:typescript' },
-  { name: 'Python', icon: 'simple-icons:python' },
-  { name: 'Golang', icon: 'simple-icons:go' },
-  { name: 'Lua', icon: 'simple-icons:lua' },
-  { name: 'Git', icon: 'simple-icons:git' },
-  { name: 'Docker', icon: 'simple-icons:docker' },
-  { name: 'Figma', icon: 'simple-icons:figma' },
-  { name: 'Jest', icon: 'simple-icons:jest' },
-  { name: 'Vitest', icon: 'simple-icons:vitest' },
-  { name: 'Cypress', icon: 'simple-icons:cypress' },
-  { name: 'Linux', icon: 'simple-icons:linux' },
-  { name: 'Github', icon: 'simple-icons:github' },
-  { name: 'VS Code', icon: 'simple-icons:visualstudiocode' },
-  { name: 'Webpack', icon: 'simple-icons:webpack' },
-  { name: 'Vite', icon: 'simple-icons:vite' },
-  { name: 'ESLint', icon: 'simple-icons:eslint' },
-  { name: 'Prettier', icon: 'simple-icons:prettier' },
+  { name: 'HTML', icon: SiHtml5 },
+  { name: 'CSS / SCSS', icon: SiCss3 },
+  { name: 'Vue.js', icon: SiVuedotjs },
+  { name: 'Nuxt.js', icon: SiNuxt },
+  { name: 'React', icon: SiReact },
+  { name: 'Next.js', icon: SiNextdotjs },
+  { name: 'Tailwind', icon: SiTailwindcss },
+  { name: 'Node.js', icon: SiNodedotjs },
+  { name: 'Bun', icon: SiBun },
+  { name: 'Express', icon: SiExpress },
+  { name: 'MongoDB', icon: SiMongodb },
+  { name: 'MySQL', icon: SiMysql },
+  { name: 'PostgreSQL', icon: SiPostgresql },
+  { name: 'Prisma', icon: SiPrisma },
+  { name: 'AdonisJS', icon: SiAdonisjs },
+  { name: 'NestJS', icon: SiNestjs },
+  { name: 'React Native', icon: SiReact },
+  { name: 'JavaScript', icon: SiJavascript },
+  { name: 'TypeScript', icon: SiTypescript },
+  { name: 'Python', icon: SiPython },
+  { name: 'Golang', icon: SiGo },
+  { name: 'Lua', icon: SiLua },
+  { name: 'Git', icon: SiGit },
+  { name: 'Docker', icon: SiDocker },
+  { name: 'Figma', icon: SiFigma },
+  { name: 'Jest', icon: SiJest },
+  { name: 'Vitest', icon: SiVitest },
+  { name: 'Cypress', icon: SiCypress },
+  { name: 'Linux', icon: SiLinux },
+  { name: 'Github', icon: SiGithub },
+  { name: 'VS Code', icon: SiVisualstudiocode },
+  { name: 'Webpack', icon: SiWebpack },
+  { name: 'Vite', icon: SiVite },
+  { name: 'ESLint', icon: SiEslint },
+  { name: 'Prettier', icon: SiPrettier },
 ]
 
 function shuffle<T>(array: T[]) {
@@ -70,7 +105,7 @@ function getResponsiveColumnVisibility(col: number) {
   <section class="w-full max-w-240 mx-auto px-4 py-16 scroll-mt-20" id="tecnologias">
     <div class="flex items-center justify-between mb-8">
       <h2 class="text-2xl font-bold text-white flex items-center gap-3">
-        <Icon icon="material-symbols:memory" class="text-accent" />
+        <IconMemory class="text-accent" />
         Tecnologias
       </h2>
       <div class="h-px flex-1 bg-card-border ml-6"></div>
@@ -97,8 +132,8 @@ function getResponsiveColumnVisibility(col: number) {
               class="p-4 rounded-xl bg-card-dark border border-card-border group hover:border-accent transition-all flex flex-col items-center justify-center gap-2 h-28 shrink-0"
               :aria-hidden="col !== 1"
             >
-              <Icon
-                :icon="tech.icon"
+              <component
+                :is="tech.icon"
                 class="text-4xl text-gray-400 group-hover:text-accent transition-colors"
               />
 

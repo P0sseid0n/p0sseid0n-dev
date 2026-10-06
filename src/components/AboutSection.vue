@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
+import IconFingerprint from '~icons/material-symbols/fingerprint'
+import IconPerson from '~icons/material-symbols/person'
 import AnimationScroll from './AnimationScroll.vue'
 
 type DiffResult = {
@@ -47,10 +48,10 @@ const hashtags = ['FrontEnd', 'BackEnd', 'FullStack', 'TypeScript', 'Python']
         <div
           class="absolute top-[50%] -translate-y-[50%] right-0 p-12 pointer-events-none opacity-[0.06] animate-soft-pulse"
         >
-          <Icon icon="material-symbols:fingerprint" class="text-[200px] text-white" />
+          <IconFingerprint class="text-[200px] text-white" />
         </div>
         <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-          <Icon icon="material-symbols:person" class="text-accent text-3xl" />
+          <IconPerson class="text-accent text-3xl" />
           Sobre Mim
         </h2>
         <div class="space-y-4 text-gray-400 leading-relaxed max-w-2xl relative z-10 pr-16">

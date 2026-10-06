@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, type Ref } from 'vue'
-import { Icon } from '@iconify/vue'
+import IconSync from '~icons/material-symbols/sync'
 import { prefersReducedMotion } from '@/utils/motion'
 
 const currentName = ref('P0sseid0n')
@@ -105,8 +105,7 @@ onUnmounted(() => {
           <div
             class="bg-card-dark border border-card-border px-3 py-1.5 rounded-lg shadow-xl flex items-center gap-2"
           >
-            <Icon
-              icon="material-symbols:sync"
+            <IconSync
               class="text-accent text-sm transition-transform duration-500"
               :style="{ transform: `rotate(${rotationIcon}deg)` }"
             />

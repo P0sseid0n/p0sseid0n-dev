@@ -1,7 +1,7 @@
 import { ViteSSG } from 'vite-ssg/single-page'
 import App from './App.vue'
 
-import '@fontsource/space-grotesk'
+import '@fontsource-variable/space-grotesk'
 
 import './main.css'
 

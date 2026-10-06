@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
+import IconMail from '~icons/material-symbols/mail'
+import IconDownload from '~icons/material-symbols/download'
+import IconGithub from '~icons/simple-icons/github'
+import IconLinkedin from '~icons/simple-icons/linkedin'
 import AnimationMagnet from './AnimationMagnet.vue'
 
 const year = new Date().getFullYear()
@@ -22,7 +25,7 @@ const year = new Date().getFullYear()
             class="inline-flex items-center gap-2 rounded-lg bg-accent text-[#0f1318] px-6 py-3 font-bold hover:bg-white transition-colors"
             href="mailto:matheuspossidoniom@outlook.com"
           >
-            <Icon icon="material-symbols:mail" class="text-lg" />
+            <IconMail class="text-lg" />
             Enviar e-mail
           </a>
         </AnimationMagnet>
@@ -31,7 +34,7 @@ const year = new Date().getFullYear()
           href="https://docs.google.com/document/d/1rLACVhPBc8_sdbDZ1i05ssPZ02NsAOq3yxJHEB-PdH4/export?format=pdf&tab=1"
           download
         >
-          <Icon icon="material-symbols:download" class="text-lg" />
+          <IconDownload class="text-lg" />
           Baixar CV
         </a>
       </div>
@@ -43,7 +46,7 @@ const year = new Date().getFullYear()
           rel="noopener"
         >
           <span class="sr-only">Github</span>
-          <Icon icon="simple-icons:github" class="size-6" />
+          <IconGithub class="size-6" />
         </a>
         <a
           class="text-gray-400 hover:text-accent transition-colors"
@@ -52,7 +55,7 @@ const year = new Date().getFullYear()
           rel="noopener"
         >
           <span class="sr-only">LinkedIn</span>
-          <Icon icon="simple-icons:linkedin" class="size-6" />
+          <IconLinkedin class="size-6" />
         </a>
       </div>
       <div class="mt-12 text-xs text-gray-400 font-mono">

@@ -1,23 +1,14 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, watch, useTemplateRef } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { computed, onMounted, onUnmounted, ref, useTemplateRef } from 'vue'
 import { prefersReducedMotion } from '@/utils/motion'
-
-gsap.registerPlugin(ScrollTrigger)
 
 interface AnimatedContentProps {
   distance?: number
   direction?: 'vertical' | 'horizontal'
   reverse?: boolean
   duration?: number
-  ease?: string | ((progress: number) => number)
-  initialOpacity?: number
-  animateOpacity?: boolean
-  scale?: number
-  threshold?: number
   delay?: number
-  className?: string
+  threshold?: number
 }
 
 const props = withDefaults(defineProps<AnimatedContentProps>(), {
@@ -25,116 +16,55 @@ const props = withDefaults(defineProps<AnimatedContentProps>(), {
   direction: 'horizontal',
   reverse: false,
   duration: 0.8,
-  ease: 'power3.out',
-  initialOpacity: 0,
-  animateOpacity: true,
-  scale: 1,
-  threshold: 0.1,
   delay: 0,
-  className: '',
+  threshold: 0.1,
 })
-
-const emit = defineEmits<{
-  complete: []
-}>()
 
 const containerRef = useTemplateRef<HTMLDivElement>('containerRef')
 
+// 'idle' = renderizado normalmente (SSR, sem JS, ou já visível ao carregar)
+const state = ref<'idle' | 'hidden' | 'shown'>('idle')
+let observer: IntersectionObserver | undefined
+
+const style = computed(() => {
+  if (state.value === 'idle') return undefined
+
+  const offset = props.reverse ? -props.distance : props.distance
+  const translate =
+    props.direction === 'horizontal' ? `translateX(${offset}px)` : `translateY(${offset}px)`
+
+  if (state.value === 'hidden') return { opacity: 0, transform: translate }
+
+  // Equivalente ao power3.out do GSAP
+  const easing = `${props.duration}s cubic-bezier(0.215, 0.61, 0.355, 1) ${props.delay}s`
+  return { opacity: 1, transform: 'none', transition: `opacity ${easing}, transform ${easing}` }
+})
+
 onMounted(() => {
   const el = containerRef.value
-  if (!el || prefersReducedMotion()) return
+  if (!el || prefersReducedMotion() || !('IntersectionObserver' in window)) return
 
-  const axis = props.direction === 'horizontal' ? 'x' : 'y'
-  const offset = props.reverse ? -props.distance : props.distance
-  const startPct = (1 - props.threshold) * 100
+  // Se já está na tela, não esconde o que o usuário já está vendo
+  const triggerLine = window.innerHeight * (1 - props.threshold)
+  if (el.getBoundingClientRect().top < triggerLine) return
 
-  gsap.set(el, {
-    [axis]: offset,
-    scale: props.scale,
-    opacity: props.animateOpacity ? props.initialOpacity : 1,
-  })
-
-  gsap.to(el, {
-    [axis]: 0,
-    scale: 1,
-    opacity: 1,
-    duration: props.duration,
-    ease: props.ease,
-    delay: props.delay,
-    onComplete: () => emit('complete'),
-    scrollTrigger: {
-      trigger: el,
-      start: `top ${startPct}%`,
-      toggleActions: 'play none none none',
-      once: true,
+  state.value = 'hidden'
+  observer = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry?.isIntersecting) return
+      state.value = 'shown'
+      observer?.disconnect()
     },
-  })
+    { rootMargin: `0px 0px -${props.threshold * 100}% 0px` },
+  )
+  observer.observe(el)
 })
 
-watch(
-  () => [
-    props.distance,
-    props.direction,
-    props.reverse,
-    props.duration,
-    props.ease,
-    props.initialOpacity,
-    props.animateOpacity,
-    props.scale,
-    props.threshold,
-    props.delay,
-  ],
-  () => {
-    const el = containerRef.value
-    if (!el || prefersReducedMotion()) return
-
-    ScrollTrigger.getAll().forEach((t) => t.kill())
-    gsap.killTweensOf(el)
-
-    const axis = props.direction === 'horizontal' ? 'x' : 'y'
-    const offset = props.reverse ? -props.distance : props.distance
-    const startPct = (1 - props.threshold) * 100
-
-    gsap.set(el, {
-      [axis]: offset,
-      scale: props.scale,
-      opacity: props.animateOpacity ? props.initialOpacity : 1,
-    })
-
-    gsap.to(el, {
-      [axis]: 0,
-      scale: 1,
-      opacity: 1,
-      duration: props.duration,
-      ease: props.ease,
-      delay: props.delay,
-      onComplete: () => emit('complete'),
-      scrollTrigger: {
-        trigger: el,
-        start: `top ${startPct}%`,
-        toggleActions: 'play none none none',
-        once: true,
-      },
-    })
-  },
-  { deep: true },
-)
-
-onUnmounted(() => {
-  const el = containerRef.value
-  if (el) {
-    ScrollTrigger.getAll().forEach((t) => t.kill())
-    gsap.killTweensOf(el)
-  }
-})
+onUnmounted(() => observer?.disconnect())
 </script>
 
 <template>
-  <div ref="containerRef" :class="`animated-content ${props.className}`">
+  <div ref="containerRef" :style="style">
     <slot />
   </div>
 </template>
-
-<style scoped>
-/* GSAP will handle all transforms and opacity */
-</style>

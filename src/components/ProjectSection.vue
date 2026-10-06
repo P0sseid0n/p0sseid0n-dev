@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
+import IconRocketLaunch from '~icons/material-symbols/rocket-launch'
+import IconStar from '~icons/material-symbols/star'
+import IconCode from '~icons/material-symbols/code'
+import IconVisibility from '~icons/material-symbols/visibility'
+import IconAdd from '~icons/material-symbols/add'
 import pinnedRepos from 'virtual:github-pinned'
 
 interface Project {
@@ -65,7 +69,7 @@ const projects: Project[] = pinnedRepos
 <template>
   <section class="w-full max-w-240 mx-auto px-4 py-16 scroll-mt-20" id="projetos">
     <h2 class="text-2xl font-bold text-white flex items-center gap-3 mb-8">
-      <Icon icon="material-symbols:rocket-launch" class="text-accent" />
+      <IconRocketLaunch class="text-accent" />
       Projetos Recentes
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -83,7 +87,7 @@ const projects: Project[] = pinnedRepos
             rel="noopener"
             :title="`Dar estrela em ${project.title}`"
           >
-            <Icon icon="material-symbols:star" class="text-[20px]" />
+            <IconStar class="text-[20px]" />
             {{ project.stars }}
           </a>
         </div>
@@ -106,7 +110,7 @@ const projects: Project[] = pinnedRepos
             target="_blank"
             rel="noopener"
           >
-            <Icon icon="material-symbols:code" class="text-base" />
+            <IconCode class="text-base" />
             Código
           </a>
           <a
@@ -116,7 +120,7 @@ const projects: Project[] = pinnedRepos
             target="_blank"
             rel="noopener"
           >
-            <Icon icon="material-symbols:visibility" class="text-base" />
+            <IconVisibility class="text-base" />
             Preview
           </a>
         </div>
@@ -131,7 +135,7 @@ const projects: Project[] = pinnedRepos
         <div
           class="h-12 w-12 rounded-full bg-card-border flex items-center justify-center group-hover:bg-primary transition-colors"
         >
-          <Icon icon="material-symbols:add" class="text-white" />
+          <IconAdd class="text-white" />
         </div>
         <h3 class="font-medium text-gray-400 group-hover:text-white">Ver mais no Github</h3>
       </a>
