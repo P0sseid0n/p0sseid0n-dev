@@ -6,7 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 import tailwindcss from '@tailwindcss/vite'
 
-import githubPinned from './plugins/githubPinned'
+import githubPinned from './plugins/githubPinned.ts'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {

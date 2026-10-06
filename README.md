@@ -22,7 +22,7 @@ A seção de projetos é montada automaticamente durante o build: um plugin do V
 
 ## Rodando localmente
 
-Requer [Bun](https://bun.sh) (ou Node `^20.19` / `>=22.12`).
+Requer [Bun](https://bun.sh) (ou Node `^22.22` / `^24.15` / `>=26`).
 
 ```sh
 bun install       # instala as dependências
