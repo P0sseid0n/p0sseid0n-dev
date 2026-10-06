@@ -54,13 +54,13 @@ async function fetchRepo(fullName: string, token?: string): Promise<PinnedRepo> 
   }
 }
 
-export default function githubPinned(user: string): Plugin {
+export default function githubPinned(user: string, token?: string): Plugin {
   let cache: Promise<PinnedRepo[]> | undefined
 
   const load = async () => {
     try {
       const names = await fetchPinnedNames(user)
-      return await Promise.all(names.map((name) => fetchRepo(name, process.env.GITHUB_TOKEN)))
+      return await Promise.all(names.map((name) => fetchRepo(name, token)))
     } catch (error) {
       console.warn(`[github-pinned] ${(error as Error).message}`)
       return []
