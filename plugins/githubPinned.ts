@@ -1,3 +1,5 @@
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { dirname, join } from 'node:path'
 import type { Plugin } from 'vite'
 
 export interface PinnedRepo {
@@ -54,21 +56,58 @@ async function fetchRepo(fullName: string, token?: string): Promise<PinnedRepo> 
   }
 }
 
+interface DiskCache {
+  user: string
+  fetchedAt: number
+  repos: PinnedRepo[]
+}
+
+// O vite-ssg roda dois builds (client e SSR); sem cache cada um refaz todas as chamadas
+const CACHE_TTL = 60 * 60 * 1000
+
+async function readDiskCache(file: string, user: string): Promise<DiskCache | undefined> {
+  try {
+    const data = JSON.parse(await readFile(file, 'utf8')) as DiskCache
+    return data.user === user ? data : undefined
+  } catch {
+    return undefined
+  }
+}
+
 export default function githubPinned(user: string, token?: string): Plugin {
   let cache: Promise<PinnedRepo[]> | undefined
+  let cacheFile = ''
+  let isBuild = false
 
   const load = async () => {
+    const disk = await readDiskCache(cacheFile, user)
+    if (disk && Date.now() - disk.fetchedAt < CACHE_TTL) return disk.repos
+
     try {
       const names = await fetchPinnedNames(user)
-      return await Promise.all(names.map((name) => fetchRepo(name, token)))
+      const repos = await Promise.all(names.map((name) => fetchRepo(name, token)))
+      await mkdir(dirname(cacheFile), { recursive: true })
+      await writeFile(cacheFile, JSON.stringify({ user, fetchedAt: Date.now(), repos }))
+      return repos
     } catch (error) {
-      console.warn(`[github-pinned] ${(error as Error).message}`)
+      const message = `[github-pinned] ${(error as Error).message}`
+      if (disk) {
+        console.warn(`${message}; usando o cache de ${new Date(disk.fetchedAt).toLocaleString()}`)
+        return disk.repos
+      }
+      // Melhor falhar o build do que publicar o site sem a seção de projetos
+      if (isBuild) throw new Error(`${message}. Defina GITHUB_TOKEN para evitar o rate limit.`)
+      console.warn(message)
       return []
     }
   }
 
   return {
     name: 'github-pinned',
+    configResolved(config) {
+      cacheFile = join(config.cacheDir, 'github-pinned.json')
+      isBuild = config.command === 'build'
+    },
     resolveId(id) {
       if (id === VIRTUAL_ID) return RESOLVED_ID
     },
