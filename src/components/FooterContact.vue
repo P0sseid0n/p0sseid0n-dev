@@ -9,12 +9,12 @@ const year = new Date().getFullYear()
 </script>
 
 <template>
-  <footer class="w-full border-t border-card-border bg-[#0f1318] py-16 mt-12" id="contato">
+  <footer class="w-full border-t border-card-border bg-background-deep py-16 mt-12" id="contato">
     <div class="mx-auto max-w-240 px-4 flex flex-col items-center text-center">
-      <h2 class="text-2xl font-bold text-white mb-6">
+      <h2 class="text-2xl font-bold text-fg mb-6">
         Quer conversar sobre um projeto ou uma vaga?
       </h2>
-      <p class="text-gray-400 max-w-md mb-8">
+      <p class="text-fg-muted max-w-md mb-8">
         Estou aberto a novas oportunidades e projetos. O jeito mais rápido de falar comigo é por
         e-mail.
       </p>
@@ -22,7 +22,7 @@ const year = new Date().getFullYear()
       <div class="flex flex-wrap justify-center gap-4">
         <AnimationMagnet :padding="48">
           <a
-            class="inline-flex items-center gap-2 rounded-lg bg-accent text-[#0f1318] px-6 py-3 font-bold hover:bg-white transition-colors"
+            class="inline-flex items-center gap-2 rounded-lg bg-accent text-on-accent px-6 py-3 font-bold hover:bg-fg hover:text-background transition-colors"
             href="mailto:matheuspossidoniom@outlook.com"
           >
             <IconMail class="text-lg" />
@@ -40,7 +40,7 @@ const year = new Date().getFullYear()
       </div>
       <div class="flex gap-8 mt-12">
         <a
-          class="text-gray-400 hover:text-accent transition-colors"
+          class="text-fg-muted hover:text-accent transition-colors"
           href="https://github.com/P0sseid0n"
           target="_blank"
           rel="noopener"
@@ -49,7 +49,7 @@ const year = new Date().getFullYear()
           <IconGithub class="size-6" />
         </a>
         <a
-          class="text-gray-400 hover:text-accent transition-colors"
+          class="text-fg-muted hover:text-accent transition-colors"
           href="https://www.linkedin.com/in/matheus-possidonio/"
           target="_blank"
           rel="noopener"
@@ -58,7 +58,7 @@ const year = new Date().getFullYear()
           <IconLinkedin class="size-6" />
         </a>
       </div>
-      <div class="mt-12 text-xs text-gray-400 font-mono">
+      <div class="mt-12 text-xs text-fg-muted font-mono">
         © {{ year }} P0sseid0n. Todos os direitos reservados.
       </div>
     </div>

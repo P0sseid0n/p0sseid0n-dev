@@ -1,11 +1,29 @@
 @import 'tailwindcss';
 
+/* Variante `light:` para casos pontuais (ex.: trocar o ícone do botão de tema) */
+@custom-variant light (&:where([data-theme='light'], [data-theme='light'] *));
+
+/*
+ * Cores semânticas: os utilitários (bg-card, text-fg, ...) apontam para variáveis
+ * que mudam conforme o atributo data-theme no <html> (escuro é o padrão).
+ */
 @theme {
   --color-primary: #225277;
-  --color-accent: #00c2ff;
-  --color-background-dark: #14181f;
-  --color-card-dark: #1e242b;
-  --color-card-border: #2a3741;
+  --color-primary-hover: var(--theme-primary-hover);
+  --color-accent: var(--theme-accent);
+  --color-on-accent: var(--theme-on-accent);
+
+  --color-background: var(--theme-background);
+  --color-background-deep: var(--theme-background-deep);
+  --color-card: var(--theme-card);
+  --color-card-border: var(--theme-card-border);
+  --color-border-strong: var(--theme-border-strong);
+
+  --color-fg: var(--theme-fg);
+  --color-fg-soft: var(--theme-fg-soft);
+  --color-fg-muted: var(--theme-fg-muted);
+  --color-fg-subtle: var(--theme-fg-subtle);
+  --color-tag: var(--theme-tag);
 
   --font-display: 'Space Grotesk Variable', sans-serif;
 
@@ -16,6 +34,7 @@
 
   --shadow-neon: 0 0 15px -3px rgba(0, 194, 255, 0.3);
   --shadow-neon-strong: 0 0 20px -5px rgba(0, 194, 255, 0.6);
+  --shadow-card: var(--theme-shadow-card);
 
   --breakpoint-xs: 35rem;
 
@@ -43,11 +62,61 @@
   }
 }
 
+/* Tema escuro (padrão) */
+:root {
+  color-scheme: dark;
+
+  --theme-primary-hover: #2a648f;
+  --theme-accent: #00c2ff;
+  --theme-on-accent: #0f1318;
+
+  --theme-background: #14181f;
+  --theme-background-deep: #0f1318;
+  --theme-card: #1e242b;
+  --theme-card-border: #2a3741;
+  --theme-border-strong: oklch(44.6% 0.03 256.802); /* gray-600 */
+
+  --theme-fg: #ffffff;
+  --theme-fg-soft: oklch(87.2% 0.01 258.338); /* gray-300 */
+  --theme-fg-muted: oklch(70.7% 0.022 261.325); /* gray-400 */
+  --theme-fg-subtle: oklch(55.1% 0.027 264.364); /* gray-500 */
+  --theme-tag: #9bb0bf;
+
+  --theme-shadow-card: 0 0 #0000;
+}
+
+/* Tema claro: o ciano #00c2ff não tem contraste no branco, então texto e ícones usam um azul mais escuro */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --theme-primary-hover: #1b4363;
+  --theme-accent: #0077b6;
+  --theme-on-accent: #ffffff;
+
+  --theme-background: #f7f9fc;
+  --theme-background-deep: #eef2f6;
+  --theme-card: #ffffff;
+  --theme-card-border: #dde4eb;
+  --theme-border-strong: #b9c4cf;
+
+  --theme-fg: #0f1720;
+  --theme-fg-soft: #3b4855;
+  --theme-fg-muted: #4b5866;
+  --theme-fg-subtle: #5a6672;
+  --theme-tag: #3f5667;
+
+  --theme-shadow-card:
+    0 1px 2px rgba(15, 23, 32, 0.04), 0 16px 40px -24px rgba(15, 23, 32, 0.14);
+}
+
 html,
 body {
-  background-color: #0f1318;
-  background: linear-gradient(180deg, var(--color-background-dark, #14181f) 40%, #0f1318 60%);
-  color-scheme: dark;
+  background-color: var(--color-background-deep);
+  background: linear-gradient(
+    180deg,
+    var(--color-background) 40%,
+    var(--color-background-deep) 60%
+  );
 }
 
 body {

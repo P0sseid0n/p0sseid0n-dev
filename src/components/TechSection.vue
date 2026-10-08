@@ -104,7 +104,7 @@ function getResponsiveColumnVisibility(col: number) {
 <template>
   <section class="w-full max-w-240 mx-auto px-4 py-16 scroll-mt-20" id="tecnologias">
     <div class="flex items-center justify-between mb-8">
-      <h2 class="text-2xl font-bold text-white flex items-center gap-3">
+      <h2 class="text-2xl font-bold text-fg flex items-center gap-3">
         <IconMemory class="text-accent" />
         Tecnologias
       </h2>
@@ -129,15 +129,15 @@ function getResponsiveColumnVisibility(col: number) {
             <div
               v-for="(tech, i) in columnList(col)"
               :key="`${tech.name}-${col}-${i}`"
-              class="p-4 rounded-xl bg-card-dark border border-card-border group hover:border-accent transition-all flex flex-col items-center justify-center gap-2 h-28 shrink-0"
+              class="p-4 rounded-xl bg-card border border-card-border group hover:border-accent transition-all flex flex-col items-center justify-center gap-2 h-28 shrink-0"
               :aria-hidden="col !== 1"
             >
               <component
                 :is="tech.icon"
-                class="text-4xl text-gray-400 group-hover:text-accent transition-colors"
+                class="text-4xl text-fg-muted group-hover:text-accent transition-colors"
               />
 
-              <span class="text-xs font-medium text-gray-300">
+              <span class="text-xs font-medium text-fg-soft">
                 {{ tech.name }}
               </span>
             </div>

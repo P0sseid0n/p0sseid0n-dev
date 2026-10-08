@@ -11,7 +11,7 @@
     />
     <meta name="author" content="Matheus Possidonio" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="dark light" />
 
     <!-- SEO -->
     <meta name="robots" content="index, follow" />
@@ -48,6 +48,22 @@
 
     <!-- Performance -->
     <meta name="theme-color" content="#14181f" />
+    <!-- Aplica o tema antes da primeira pintura para não piscar: escolha salva > preferência do sistema -->
+    <script>
+      ;(function () {
+        var theme
+        try {
+          theme = localStorage.getItem('theme')
+        } catch (e) {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        }
+        document.documentElement.dataset.theme = theme
+        if (theme === 'light') {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fc')
+        }
+      })()
+    </script>
     <!-- iOS Safari (status bar) -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />

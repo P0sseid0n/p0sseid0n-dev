@@ -87,15 +87,17 @@ onUnmounted(() => {
   <section
     class="relative w-full px-4 py-24 md:py-48 flex flex-col items-center justify-center gap-12 text-center"
   >
-    <div class="absolute inset-0 z-0 bg-grid-pattern opacity-20 pointer-events-none"></div>
+    <div
+      class="absolute inset-0 z-0 bg-grid-pattern opacity-20 light:opacity-60 pointer-events-none"
+    ></div>
     <div class="flex flex-col gap-6 z-10 max-w-3xl items-center">
-      <div class="flex items-center justify-center gap-4 text-accent/80 mt-4">
+      <div class="flex items-center justify-center gap-4 text-accent/80 light:text-accent mt-4">
         <span class="h-px w-8 bg-accent/50"></span>
         <p class="text-lg font-medium tracking-wide">Olá, eu sou</p>
         <span class="h-px w-8 bg-accent/50"></span>
       </div>
       <div class="relative">
-        <h1 class="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter">
+        <h1 class="text-6xl md:text-8xl font-black text-fg leading-[0.9] tracking-tighter">
           {{ currentName }}<span class="text-accent animate-terminal-caret">_</span>
         </h1>
         <button
@@ -103,21 +105,21 @@ onUnmounted(() => {
           @click="toggleName"
         >
           <div
-            class="bg-card-dark border border-card-border px-3 py-1.5 rounded-lg shadow-xl flex items-center gap-2"
+            class="bg-card border border-card-border px-3 py-1.5 rounded-lg shadow-xl flex items-center gap-2"
           >
             <IconSync
               class="text-accent text-sm transition-transform duration-500"
               :style="{ transform: `rotate(${rotationIcon}deg)` }"
             />
 
-            <span class="text-xs font-mono text-gray-300 whitespace-nowrap">
-              aka <span class="text-white font-bold">{{ otherName }}</span>
+            <span class="text-xs font-mono text-fg-soft whitespace-nowrap">
+              aka <span class="text-fg font-bold">{{ otherName }}</span>
             </span>
           </div>
         </button>
       </div>
       <div
-        class="mt-2 flex items-center justify-center gap-2 text-2xl md:text-4xl font-bold text-gray-400 tracking-tight"
+        class="mt-2 flex items-center justify-center gap-2 text-2xl md:text-4xl font-bold text-fg-muted tracking-tight"
       >
         <span>Dev</span>
         <span class="text-accent">{{ role }}</span>
@@ -125,13 +127,13 @@ onUnmounted(() => {
 
       <div class="flex flex-wrap justify-center gap-4 mt-6">
         <a
-          class="flex items-center justify-center rounded-lg bg-primary text-white h-12 px-8 text-base font-bold tracking-wide transition-all hover:bg-[#2a648f] hover:shadow-neon hover:scale-105"
+          class="flex items-center justify-center rounded-lg bg-primary text-white h-12 px-8 text-base font-bold tracking-wide transition-all hover:bg-primary-hover hover:shadow-neon hover:scale-105"
           href="#projetos"
         >
           Ver Projetos
         </a>
         <a
-          class="flex items-center justify-center rounded-lg border border-gray-600 text-gray-300 h-12 px-8 text-base font-bold tracking-wide transition-all hover:border-accent hover:text-accent hover:scale-105"
+          class="flex items-center justify-center rounded-lg border border-border-strong text-fg-soft h-12 px-8 text-base font-bold tracking-wide transition-all hover:border-accent hover:text-accent hover:scale-105"
           href="#contato"
         >
           Contato
@@ -144,8 +146,8 @@ onUnmounted(() => {
 <style scoped>
 .bg-grid-pattern {
   background-image:
-    linear-gradient(to right, #2a3741 1px, transparent 1px),
-    linear-gradient(to bottom, #2a3741 1px, transparent 1px);
+    linear-gradient(to right, var(--color-card-border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-card-border) 1px, transparent 1px);
   background-size: 40px 40px;
   mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
   -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
