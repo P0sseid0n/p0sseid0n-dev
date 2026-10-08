@@ -68,7 +68,7 @@ const projects: Project[] = pinnedRepos
 
 <template>
   <section class="w-full max-w-240 mx-auto px-4 py-16 scroll-mt-20" id="projetos">
-    <h2 class="text-2xl font-bold text-white flex items-center gap-3 mb-8">
+    <h2 class="text-2xl font-bold text-fg flex items-center gap-3 mb-8">
       <IconRocketLaunch class="text-accent" />
       Projetos Recentes
     </h2>
@@ -76,12 +76,12 @@ const projects: Project[] = pinnedRepos
       <article
         v-for="project in projects"
         :key="project.title"
-        class="flex flex-col h-full rounded-xl border border-card-border bg-card-dark p-6"
+        class="flex flex-col h-full rounded-xl border border-card-border bg-card shadow-card p-6"
       >
         <div class="flex items-start justify-between mb-4">
-          <h3 class="font-bold text-lg text-white">{{ project.title }}</h3>
+          <h3 class="font-bold text-lg text-fg">{{ project.title }}</h3>
           <a
-            class="flex items-center gap-1 text-sm text-gray-500 hover:text-white transition-colors"
+            class="flex items-center gap-1 text-sm text-fg-subtle hover:text-fg transition-colors"
             :href="project.codeLink"
             target="_blank"
             rel="noopener"
@@ -91,21 +91,21 @@ const projects: Project[] = pinnedRepos
             {{ project.stars }}
           </a>
         </div>
-        <p class="text-gray-400 text-sm leading-relaxed mb-6 grow">
+        <p class="text-fg-muted text-sm leading-relaxed mb-6 grow">
           {{ project.description }}
         </p>
         <ul class="flex flex-wrap gap-2 mb-4">
           <li
             v-for="tech in project.technologies"
             :key="tech"
-            class="text-xs font-medium text-[#9bb0bf] bg-background-dark px-2 py-1 rounded border border-card-border"
+            class="text-xs font-medium text-tag bg-background px-2 py-1 rounded border border-card-border"
           >
             {{ tech }}
           </li>
         </ul>
         <div class="flex items-center gap-4 mt-auto pt-4 border-t border-card-border">
           <a
-            class="text-sm font-bold text-white hover:text-accent transition-colors flex items-center gap-1"
+            class="text-sm font-bold text-fg hover:text-accent transition-colors flex items-center gap-1"
             :href="project.codeLink"
             target="_blank"
             rel="noopener"
@@ -115,7 +115,7 @@ const projects: Project[] = pinnedRepos
           </a>
           <a
             v-if="project.previewLink"
-            class="text-sm font-bold text-white hover:text-accent transition-colors flex items-center gap-1"
+            class="text-sm font-bold text-fg hover:text-accent transition-colors flex items-center gap-1"
             :href="project.previewLink"
             target="_blank"
             rel="noopener"
@@ -127,7 +127,7 @@ const projects: Project[] = pinnedRepos
       </article>
 
       <a
-        class="flex flex-col h-full rounded-xl border border-dashed border-card-border bg-transparent p-6 items-center justify-center gap-4 group cursor-pointer hover:border-accent hover:bg-card-dark/50 transition-all"
+        class="flex flex-col h-full rounded-xl border border-dashed border-card-border bg-transparent p-6 items-center justify-center gap-4 group cursor-pointer hover:border-accent hover:bg-card/50 transition-all"
         href="https://github.com/P0sseid0n?tab=repositories"
         target="_blank"
         rel="noopener"
@@ -135,9 +135,9 @@ const projects: Project[] = pinnedRepos
         <div
           class="h-12 w-12 rounded-full bg-card-border flex items-center justify-center group-hover:bg-primary transition-colors"
         >
-          <IconAdd class="text-white" />
+          <IconAdd class="text-fg group-hover:text-white transition-colors" />
         </div>
-        <h3 class="font-medium text-gray-400 group-hover:text-white">Ver mais no Github</h3>
+        <h3 class="font-medium text-fg-muted group-hover:text-fg">Ver mais no Github</h3>
       </a>
     </div>
   </section>

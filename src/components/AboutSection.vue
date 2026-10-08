@@ -43,18 +43,18 @@ const hashtags = ['FrontEnd', 'BackEnd', 'FullStack', 'TypeScript', 'Python']
   <AnimationScroll>
     <section class="w-full px-4 py-16 scroll-mt-20" id="sobre">
       <div
-        class="rounded-2xl max-w-240 mx-auto bg-card-dark border border-card-border p-8 md:p-12 relative overflow-hidden"
+        class="rounded-2xl max-w-240 mx-auto bg-card border border-card-border shadow-card p-8 md:p-12 relative overflow-hidden"
       >
         <div
           class="absolute top-[50%] -translate-y-[50%] right-0 p-12 pointer-events-none opacity-[0.06] animate-soft-pulse"
         >
-          <IconFingerprint class="text-[200px] text-white" />
+          <IconFingerprint class="text-[200px] text-fg" />
         </div>
-        <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+        <h2 class="text-2xl font-bold text-fg mb-6 flex items-center gap-3">
           <IconPerson class="text-accent text-3xl" />
           Sobre Mim
         </h2>
-        <div class="space-y-4 text-gray-400 leading-relaxed max-w-2xl relative z-10 pr-16">
+        <div class="space-y-4 text-fg-muted leading-relaxed max-w-2xl relative z-10 pr-16">
           <p>
             Me chamo Matheus, tenho {{ age }} anos, sou do Rio de Janeiro, Brasil. Sou desenvolvedor
             <b>full stack</b>, atualmente trabalhando com <b>front-end</b>, com forte domínio de
@@ -71,7 +71,7 @@ const hashtags = ['FrontEnd', 'BackEnd', 'FullStack', 'TypeScript', 'Python']
           <span
             v-for="(hashtag, i) in hashtags"
             :key="i"
-            class="px-3 py-1 rounded-full text-xs font-mono bg-primary/20 text-accent border border-primary/30 opacity-80 hover:opacity-100 transition-all cursor-default hover:scale-105"
+            class="px-3 py-1 rounded-full text-xs font-mono bg-primary/20 text-accent border border-primary/30 light:bg-primary/10 light:text-primary light:border-primary/20 opacity-80 hover:opacity-100 transition-all cursor-default hover:scale-105"
           >
             #{{ hashtag }}
           </span>

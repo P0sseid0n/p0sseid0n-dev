@@ -16,7 +16,7 @@ useHead({
 
 <template>
   <div
-    class="relative flex h-auto min-h-screen w-full flex-col bg-background-dark overflow-x-hidden"
+    class="relative flex h-auto min-h-screen w-full flex-col bg-background overflow-x-hidden"
   >
     <TopBar />
 

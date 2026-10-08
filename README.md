@@ -8,7 +8,7 @@ Meu portfólio pessoal, feito com Vue 3, TypeScript e Tailwind CSS.
 
 ## Sobre
 
-Site estático (SSG) com tema escuro e as seções Sobre, Tecnologias, Projetos e Contato. As animações respeitam a preferência de movimento reduzido (`prefers-reduced-motion`) do sistema.
+Site estático (SSG) com tema escuro e claro e as seções Sobre, Tecnologias, Projetos e Contato. O botão no topo alterna o tema e a escolha fica salva no navegador; na primeira visita o site segue a preferência do sistema (`prefers-color-scheme`). As animações respeitam a preferência de movimento reduzido (`prefers-reduced-motion`) do sistema.
 
 A seção de projetos é montada automaticamente durante o build: um plugin do Vite (`plugins/githubPinned.ts`) busca os repositórios fixados no meu perfil do GitHub e usa a descrição, a linguagem, as estrelas e os topics de cada um.
 
