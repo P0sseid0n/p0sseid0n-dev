@@ -23,6 +23,9 @@ export default defineConfig(({ mode }) => {
       Icons({ compiler: 'vue3', scale: 1 }),
       githubPinned('P0sseid0n', env.GITHUB_TOKEN),
     ],
+    // Expõe na rede local para testar em outros dispositivos (ex.: celular)
+    server: { host: true },
+    preview: { host: true },
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
