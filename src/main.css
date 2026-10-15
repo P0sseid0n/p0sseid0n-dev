@@ -8,9 +8,8 @@
  * que mudam conforme o atributo data-theme no <html> (escuro é o padrão).
  */
 @theme {
-  --color-primary: #225277;
-  --color-primary-hover: var(--theme-primary-hover);
   --color-accent: var(--theme-accent);
+  --color-accent-hover: var(--theme-accent-hover);
   --color-on-accent: var(--theme-on-accent);
 
   --color-background: var(--theme-background);
@@ -26,14 +25,14 @@
   --color-tag: var(--theme-tag);
 
   --font-display: 'Space Grotesk Variable', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 
   --radius: 0.25rem;
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
   --radius-full: 9999px;
 
-  --shadow-neon: 0 0 15px -3px rgba(0, 194, 255, 0.3);
-  --shadow-neon-strong: 0 0 20px -5px rgba(0, 194, 255, 0.6);
+  --shadow-glow: var(--theme-shadow-glow);
   --shadow-card: var(--theme-shadow-card);
 
   --breakpoint-xs: 35rem;
@@ -66,8 +65,8 @@
 :root {
   color-scheme: dark;
 
-  --theme-primary-hover: #2a648f;
-  --theme-accent: #00c2ff;
+  --theme-accent: #40bde7;
+  --theme-accent-hover: #6fcdec;
   --theme-on-accent: #0f1318;
 
   --theme-background: #14181f;
@@ -79,18 +78,21 @@
   --theme-fg: #ffffff;
   --theme-fg-soft: oklch(87.2% 0.01 258.338); /* gray-300 */
   --theme-fg-muted: oklch(70.7% 0.022 261.325); /* gray-400 */
-  --theme-fg-subtle: oklch(55.1% 0.027 264.364); /* gray-500 */
+  /* Mais claro que o gray-500 para passar 4.5:1 sobre o card (texto pequeno) */
+  --theme-fg-subtle: #8a94a3;
   --theme-tag: #9bb0bf;
 
   --theme-shadow-card: 0 0 #0000;
+  --theme-shadow-glow: 0 8px 24px -10px rgba(64, 189, 231, 0.45);
+  --theme-grain-opacity: 0.05;
 }
 
-/* Tema claro: o ciano #00c2ff não tem contraste no branco, então texto e ícones usam um azul mais escuro */
+/* Tema claro: o ciano do tema escuro não tem contraste no branco, então texto e ícones usam um azul mais escuro */
 :root[data-theme='light'] {
   color-scheme: light;
 
-  --theme-primary-hover: #1b4363;
-  --theme-accent: #0077b6;
+  --theme-accent: #0a6e9e;
+  --theme-accent-hover: #085a81;
   --theme-on-accent: #ffffff;
 
   --theme-background: #f7f9fc;
@@ -105,8 +107,9 @@
   --theme-fg-subtle: #5a6672;
   --theme-tag: #3f5667;
 
-  --theme-shadow-card:
-    0 1px 2px rgba(15, 23, 32, 0.04), 0 16px 40px -24px rgba(15, 23, 32, 0.14);
+  --theme-shadow-card: 0 1px 2px rgba(15, 23, 32, 0.04), 0 16px 40px -24px rgba(15, 23, 32, 0.14);
+  --theme-shadow-glow: 0 8px 24px -10px rgba(10, 110, 158, 0.4);
+  --theme-grain-opacity: 0.035;
 }
 
 /*
@@ -119,9 +122,41 @@ body {
   background-color: var(--color-background-deep);
 }
 
+html {
+  scroll-behavior: smooth;
+  /* Desconta o header fixo ao pular para uma âncora */
+  scroll-padding-top: 5rem;
+}
+
 body {
   font-family: var(--font-display);
   padding-top: env(safe-area-inset-top);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/*
+ * Granulado por cima do conteúdo para tirar o aspecto chapado das superfícies.
+ * Não pode ser position: fixed nem ficar acima do header: o Safari do iOS 26 pinta
+ * a área do topo com o elemento fixo que estiver lá, e ele é quase transparente.
+ */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: var(--theme-grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 :focus-visible {

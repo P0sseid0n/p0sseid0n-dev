@@ -84,24 +84,25 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section
-    class="relative w-full px-4 py-24 md:py-48 flex flex-col items-center justify-center gap-12 text-center"
-  >
+  <section class="relative w-full pt-24 pb-28 md:pt-44 md:pb-48">
     <div
       class="absolute inset-0 z-0 bg-grid-pattern opacity-20 light:opacity-60 pointer-events-none"
     ></div>
-    <div class="flex flex-col gap-6 z-10 max-w-3xl items-center">
-      <div class="flex items-center justify-center gap-4 text-accent/80 light:text-accent mt-4">
+    <div class="relative z-10 mx-auto flex max-w-240 flex-col items-center gap-6 px-4 text-center">
+      <div class="flex items-center gap-4 text-accent">
         <span class="h-px w-8 bg-accent/50"></span>
-        <p class="text-lg font-medium tracking-wide">Olá, eu sou</p>
+        <p class="font-mono text-base md:text-lg">Olá, eu sou</p>
         <span class="h-px w-8 bg-accent/50"></span>
       </div>
       <div class="relative">
-        <h1 class="text-6xl md:text-8xl font-black text-fg leading-[0.9] tracking-tighter">
+        <h1
+          class="text-6xl md:text-8xl lg:text-9xl font-bold text-fg leading-[0.9] tracking-[-0.045em]"
+        >
           {{ currentName }}<span class="text-accent animate-terminal-caret">_</span>
         </h1>
         <button
           class="absolute -right-20 top-0 md:-right-16 md:top-4 md:bottom-auto rotate-6 md:rotate-12 opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
+          type="button"
           @click="toggleName"
         >
           <div
@@ -118,22 +119,22 @@ onUnmounted(() => {
           </div>
         </button>
       </div>
-      <div
-        class="mt-2 flex items-center justify-center gap-2 text-2xl md:text-4xl font-bold text-fg-muted tracking-tight"
+      <p
+        class="flex items-center gap-2 text-2xl md:text-4xl font-medium text-fg-muted tracking-tight"
       >
         <span>Dev</span>
-        <span class="text-accent">{{ role }}</span>
-      </div>
+        <span class="font-semibold text-accent">{{ role }}</span>
+      </p>
 
-      <div class="flex flex-wrap justify-center gap-4 mt-6">
+      <div class="flex flex-wrap justify-center gap-3 mt-6">
         <a
-          class="flex items-center justify-center rounded-lg bg-primary text-white h-12 px-8 text-base font-bold tracking-wide transition-all hover:bg-primary-hover hover:shadow-neon hover:scale-105"
+          class="flex items-center justify-center rounded-lg bg-accent text-on-accent h-12 px-7 text-base font-semibold transition-[background-color,box-shadow,transform] duration-200 hover:bg-accent-hover hover:shadow-glow active:scale-[0.98]"
           href="#projetos"
         >
-          Ver Projetos
+          Ver projetos
         </a>
         <a
-          class="flex items-center justify-center rounded-lg border border-border-strong text-fg-soft h-12 px-8 text-base font-bold tracking-wide transition-all hover:border-accent hover:text-accent hover:scale-105"
+          class="flex items-center justify-center rounded-lg border border-border-strong text-fg-soft h-12 px-7 text-base font-semibold transition-[border-color,color,transform] duration-200 hover:border-accent hover:text-accent active:scale-[0.98]"
           href="#contato"
         >
           Contato

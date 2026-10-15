@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import IconRocketLaunch from '~icons/material-symbols/rocket-launch'
 import IconStar from '~icons/material-symbols/star'
 import IconCode from '~icons/material-symbols/code'
 import IconVisibility from '~icons/material-symbols/visibility'
-import IconAdd from '~icons/material-symbols/add'
+import IconArrowOutward from '~icons/material-symbols/arrow-outward'
 import pinnedRepos from 'virtual:github-pinned'
+import SectionTitle from './SectionTitle.vue'
 
 interface Project {
   title: string
@@ -67,45 +67,43 @@ const projects: Project[] = pinnedRepos
 </script>
 
 <template>
-  <section class="w-full max-w-240 mx-auto px-4 py-16 scroll-mt-20" id="projetos">
-    <h2 class="text-2xl font-bold text-fg flex items-center gap-3 mb-8">
-      <IconRocketLaunch class="text-accent" />
-      Projetos Recentes
-    </h2>
+  <section class="w-full max-w-240 mx-auto px-4 pt-16 pb-20" id="projetos">
+    <SectionTitle path="projetos">Projetos recentes</SectionTitle>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <article
         v-for="project in projects"
         :key="project.title"
-        class="flex flex-col h-full rounded-xl border border-card-border bg-card shadow-card p-6"
+        class="flex flex-col h-full rounded-2xl border border-card-border bg-card shadow-card p-6 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-border-strong"
       >
-        <div class="flex items-start justify-between mb-4">
-          <h3 class="font-bold text-lg text-fg">{{ project.title }}</h3>
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <h3 class="font-semibold text-xl tracking-tight text-fg">{{ project.title }}</h3>
           <a
-            class="flex items-center gap-1 text-sm text-fg-subtle hover:text-fg transition-colors"
+            class="flex items-center gap-1 text-sm font-mono tabular-nums text-fg-subtle hover:text-fg transition-colors"
             :href="project.codeLink"
             target="_blank"
             rel="noopener"
             :title="`Dar estrela em ${project.title}`"
+            :aria-label="`${project.stars} ${project.stars === 1 ? 'estrela' : 'estrelas'} no GitHub. Dar estrela em ${project.title}`"
           >
-            <IconStar class="text-[20px]" />
+            <IconStar class="text-lg" />
             {{ project.stars }}
           </a>
         </div>
-        <p class="text-fg-muted text-sm leading-relaxed mb-6 grow">
+        <p class="text-fg-muted text-[0.9375rem] leading-relaxed mb-6 grow">
           {{ project.description }}
         </p>
         <ul class="flex flex-wrap gap-2 mb-4">
           <li
             v-for="tech in project.technologies"
             :key="tech"
-            class="text-xs font-medium text-tag bg-background px-2 py-1 rounded border border-card-border"
+            class="text-xs font-mono text-tag bg-background px-2 py-1 rounded border border-card-border"
           >
             {{ tech }}
           </li>
         </ul>
         <div class="flex items-center gap-4 mt-auto pt-4 border-t border-card-border">
           <a
-            class="text-sm font-bold text-fg hover:text-accent transition-colors flex items-center gap-1"
+            class="text-sm font-semibold text-fg hover:text-accent transition-colors flex items-center gap-1.5"
             :href="project.codeLink"
             target="_blank"
             rel="noopener"
@@ -115,7 +113,7 @@ const projects: Project[] = pinnedRepos
           </a>
           <a
             v-if="project.previewLink"
-            class="text-sm font-bold text-fg hover:text-accent transition-colors flex items-center gap-1"
+            class="text-sm font-semibold text-fg hover:text-accent transition-colors flex items-center gap-1.5"
             :href="project.previewLink"
             target="_blank"
             rel="noopener"
@@ -127,17 +125,21 @@ const projects: Project[] = pinnedRepos
       </article>
 
       <a
-        class="flex flex-col h-full rounded-xl border border-dashed border-card-border bg-transparent p-6 items-center justify-center gap-4 group cursor-pointer hover:border-accent hover:bg-card/50 transition-all"
+        class="flex min-h-48 flex-col h-full rounded-2xl border border-dashed border-border-strong/60 bg-transparent p-6 items-center justify-center gap-4 group hover:border-accent hover:bg-card/50 transition-colors duration-300"
         href="https://github.com/P0sseid0n?tab=repositories"
         target="_blank"
         rel="noopener"
       >
         <div
-          class="h-12 w-12 rounded-full bg-card-border flex items-center justify-center group-hover:bg-primary transition-colors"
+          class="size-12 rounded-xl bg-card-border flex items-center justify-center group-hover:bg-accent transition-colors duration-300"
         >
-          <IconAdd class="text-fg group-hover:text-white transition-colors" />
+          <IconArrowOutward
+            class="text-xl text-fg transition-[color,transform] duration-300 group-hover:text-on-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
         </div>
-        <h3 class="font-medium text-fg-muted group-hover:text-fg">Ver mais no Github</h3>
+        <h3 class="font-medium text-fg-muted group-hover:text-fg transition-colors">
+          Ver mais no GitHub
+        </h3>
       </a>
     </div>
   </section>

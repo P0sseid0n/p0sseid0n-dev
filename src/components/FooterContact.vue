@@ -9,12 +9,18 @@ const year = new Date().getFullYear()
 </script>
 
 <template>
-  <footer class="w-full border-t border-card-border bg-background-deep py-16 mt-12" id="contato">
+  <footer
+    class="w-full border-t border-card-border bg-background-deep pt-20 pb-12 mt-12"
+    id="contato"
+  >
     <div class="mx-auto max-w-240 px-4 flex flex-col items-center text-center">
-      <h2 class="text-2xl font-bold text-fg mb-6">
+      <p class="mb-3 font-mono text-xs text-accent">
+        <span class="text-fg-subtle">~/</span>contato
+      </p>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-fg mb-5 max-w-xl">
         Quer conversar sobre um projeto ou uma vaga?
       </h2>
-      <p class="text-fg-muted max-w-md mb-8">
+      <p class="text-fg-muted max-w-md mb-10">
         Estou aberto a novas oportunidades e projetos. O jeito mais rápido de falar comigo é por
         e-mail.
       </p>
@@ -22,7 +28,7 @@ const year = new Date().getFullYear()
       <div class="flex flex-wrap justify-center gap-4">
         <AnimationMagnet :padding="48">
           <a
-            class="inline-flex items-center gap-2 rounded-lg bg-accent text-on-accent px-6 py-3 font-bold hover:bg-fg hover:text-background transition-colors"
+            class="inline-flex items-center gap-2 rounded-lg bg-accent text-on-accent px-6 py-3 font-semibold transition-[background-color,box-shadow,transform] duration-200 hover:bg-accent-hover hover:shadow-glow active:scale-[0.98]"
             href="mailto:matheuspossidoniom@outlook.com"
           >
             <IconMail class="text-lg" />
@@ -30,7 +36,7 @@ const year = new Date().getFullYear()
           </a>
         </AnimationMagnet>
         <a
-          class="inline-flex items-center gap-2 rounded-lg border border-accent text-accent px-6 py-3 font-bold hover:bg-accent/10 transition-colors shadow-neon"
+          class="inline-flex items-center gap-2 rounded-lg border border-border-strong text-fg-soft px-6 py-3 font-semibold transition-[border-color,color,transform] duration-200 hover:border-accent hover:text-accent active:scale-[0.98]"
           href="https://docs.google.com/document/d/1rLACVhPBc8_sdbDZ1i05ssPZ02NsAOq3yxJHEB-PdH4/export?format=pdf&tab=1"
           download
         >
@@ -38,18 +44,18 @@ const year = new Date().getFullYear()
           Baixar CV
         </a>
       </div>
-      <div class="flex gap-8 mt-12">
+      <div class="flex gap-4 mt-12">
         <a
-          class="text-fg-muted hover:text-accent transition-colors"
+          class="flex size-11 items-center justify-center rounded-lg text-fg-muted hover:text-accent hover:bg-card transition-colors"
           href="https://github.com/P0sseid0n"
           target="_blank"
           rel="noopener"
         >
-          <span class="sr-only">Github</span>
+          <span class="sr-only">GitHub</span>
           <IconGithub class="size-6" />
         </a>
         <a
-          class="text-fg-muted hover:text-accent transition-colors"
+          class="flex size-11 items-center justify-center rounded-lg text-fg-muted hover:text-accent hover:bg-card transition-colors"
           href="https://www.linkedin.com/in/matheus-possidonio/"
           target="_blank"
           rel="noopener"
@@ -58,7 +64,7 @@ const year = new Date().getFullYear()
           <IconLinkedin class="size-6" />
         </a>
       </div>
-      <div class="mt-12 text-xs text-fg-muted font-mono">
+      <div class="mt-10 text-xs text-fg-subtle font-mono">
         © {{ year }} P0sseid0n. Todos os direitos reservados.
       </div>
     </div>

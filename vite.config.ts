@@ -20,7 +20,14 @@ export default defineConfig(({ mode }) => {
       vueDevTools(),
       tailwindcss(),
       // Ícones viram componentes no build e o SVG sai direto no HTML
-      Icons({ compiler: 'vue3', scale: 1 }),
+      Icons({
+        compiler: 'vue3',
+        scale: 1,
+        // Todos os ícones são decorativos: o texto ao lado (ou sr-only) já dá o nome
+        iconCustomizer(_collection, _icon, props) {
+          props['aria-hidden'] = 'true'
+        },
+      }),
       githubPinned('P0sseid0n', env.GITHUB_TOKEN),
     ],
     // Expõe na rede local para testar em outros dispositivos (ex.: celular)

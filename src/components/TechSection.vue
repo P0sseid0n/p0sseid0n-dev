@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import IconMemory from '~icons/material-symbols/memory'
+import SectionTitle from './SectionTitle.vue'
 import SiHtml5 from '~icons/simple-icons/html5'
 import SiCss3 from '~icons/simple-icons/css3'
 import SiVuedotjs from '~icons/simple-icons/vuedotjs'
@@ -102,14 +102,8 @@ function getResponsiveColumnVisibility(col: number) {
 </script>
 
 <template>
-  <section class="w-full max-w-240 mx-auto px-4 py-16 scroll-mt-20" id="tecnologias">
-    <div class="flex items-center justify-between mb-8">
-      <h2 class="text-2xl font-bold text-fg flex items-center gap-3">
-        <IconMemory class="text-accent" />
-        Tecnologias
-      </h2>
-      <div class="h-px flex-1 bg-card-border ml-6"></div>
-    </div>
+  <section class="w-full max-w-240 mx-auto px-4 pt-16 pb-20" id="tecnologias">
+    <SectionTitle path="tecnologias">Tecnologias</SectionTitle>
 
     <div
       class="relative h-150 w-full overflow-hidden mask-[linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]"
@@ -129,12 +123,12 @@ function getResponsiveColumnVisibility(col: number) {
             <div
               v-for="(tech, i) in columnList(col)"
               :key="`${tech.name}-${col}-${i}`"
-              class="p-4 rounded-xl bg-card border border-card-border group hover:border-accent transition-all flex flex-col items-center justify-center gap-2 h-28 shrink-0"
-              :aria-hidden="col !== 1"
+              class="p-4 rounded-xl bg-card border border-card-border group hover:border-accent/60 transition-colors duration-300 flex flex-col items-center justify-center gap-2 h-28 shrink-0"
+              :aria-hidden="col !== 1 || i >= shuffled.length"
             >
               <component
                 :is="tech.icon"
-                class="text-4xl text-fg-muted group-hover:text-accent transition-colors"
+                class="text-4xl text-fg-muted group-hover:text-accent transition-colors duration-300"
               />
 
               <span class="text-xs font-medium text-fg-soft">
@@ -155,19 +149,6 @@ function getResponsiveColumnVisibility(col: number) {
 
 .animate-vertical-scroll-down {
   animation: vertical-scroll-down 10s linear infinite;
-}
-
-.animate-infinite-scroll {
-  animation: infinite-scroll 25s linear infinite;
-}
-
-@keyframes infinite-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
 }
 
 @keyframes vertical-scroll-up {

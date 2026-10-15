@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import IconFingerprint from '~icons/material-symbols/fingerprint'
-import IconPerson from '~icons/material-symbols/person'
 import AnimationScroll from './AnimationScroll.vue'
+import SectionTitle from './SectionTitle.vue'
 
 type DiffResult = {
   years: number
@@ -41,20 +41,19 @@ const hashtags = ['FrontEnd', 'BackEnd', 'FullStack', 'TypeScript', 'Python']
 
 <template>
   <AnimationScroll>
-    <section class="w-full px-4 py-16 scroll-mt-20" id="sobre">
+    <section class="w-full max-w-240 mx-auto px-4 pt-16 pb-20" id="sobre">
+      <SectionTitle path="sobre">Sobre mim</SectionTitle>
       <div
-        class="rounded-2xl max-w-240 mx-auto bg-card border border-card-border shadow-card p-8 md:p-12 relative overflow-hidden"
+        class="rounded-2xl bg-card border border-card-border shadow-card p-6 sm:p-8 md:p-12 relative overflow-hidden"
       >
         <div
           class="absolute top-[50%] -translate-y-[50%] right-0 p-12 pointer-events-none opacity-[0.06] animate-soft-pulse"
         >
           <IconFingerprint class="text-[200px] text-fg" />
         </div>
-        <h2 class="text-2xl font-bold text-fg mb-6 flex items-center gap-3">
-          <IconPerson class="text-accent text-3xl" />
-          Sobre Mim
-        </h2>
-        <div class="space-y-4 text-fg-muted leading-relaxed max-w-2xl relative z-10 pr-16">
+        <div
+          class="space-y-4 text-fg-muted text-base md:text-lg leading-relaxed max-w-[62ch] relative z-10 md:pr-16 [&_b]:font-semibold [&_b]:text-fg-soft"
+        >
           <p>
             Me chamo Matheus, tenho {{ age }} anos, sou do Rio de Janeiro, Brasil. Sou desenvolvedor
             <b>full stack</b>, atualmente trabalhando com <b>front-end</b>, com forte domínio de
@@ -67,15 +66,15 @@ const hashtags = ['FrontEnd', 'BackEnd', 'FullStack', 'TypeScript', 'Python']
             design no <b>front-end</b> e também aplico conhecimentos em <b>Python</b>.
           </p>
         </div>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <span
-            v-for="(hashtag, i) in hashtags"
-            :key="i"
-            class="px-3 py-1 rounded-full text-xs font-mono bg-primary/20 text-accent border border-primary/30 light:bg-primary/10 light:text-primary light:border-primary/20 opacity-80 hover:opacity-100 transition-all cursor-default hover:scale-105"
+        <ul class="mt-8 flex flex-wrap gap-2 relative z-10">
+          <li
+            v-for="hashtag in hashtags"
+            :key="hashtag"
+            class="px-2.5 py-1 rounded text-xs font-mono text-accent bg-accent/10 border border-accent/20"
           >
             #{{ hashtag }}
-          </span>
-        </div>
+          </li>
+        </ul>
       </div>
     </section>
   </AnimationScroll>
