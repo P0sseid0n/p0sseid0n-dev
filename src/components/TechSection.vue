@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onMounted, ref, shallowRef } from 'vue'
 import SectionTitle from './SectionTitle.vue'
 import SiHtml5 from '~icons/simple-icons/html5'
 import SiCss3 from '~icons/simple-icons/css3'
@@ -77,13 +78,25 @@ function shuffle<T>(array: T[]) {
   return [...array].sort(() => Math.random() - 0.5)
 }
 
-const shuffled = shuffle(technologies)
+// O sorteio só acontece no navegador: feito no build, a ordem do HTML não bateria com a do
+// cliente e a hidratação refaria a seção inteira
+const shuffled = shallowRef(technologies)
+const mounted = ref(false)
+
+onMounted(() => {
+  shuffled.value = shuffle(technologies)
+  mounted.value = true
+})
 
 // Cada coluna começa num ponto diferente da lista para não repetir as vizinhas.
 // A lista é duplicada para o loop da animação (translateY -50%) ficar contínuo.
+// No HTML gerado vai só uma cópia na primeira coluna (o que leitores de tela e buscadores leem);
+// as cópias decorativas, umas 400 com SVG, entram depois de montar
 function columnList(col: number) {
-  const offset = Math.floor((col * shuffled.length) / 6)
-  const rotated = [...shuffled.slice(offset), ...shuffled.slice(0, offset)]
+  const list = shuffled.value
+  if (!mounted.value) return col === 1 ? list : []
+  const offset = Math.floor((col * list.length) / 6)
+  const rotated = [...list.slice(offset), ...list.slice(0, offset)]
   return [...rotated, ...rotated]
 }
 
@@ -117,14 +130,16 @@ function getResponsiveColumnVisibility(col: number) {
         >
           <div
             class="flex flex-col gap-4 hover:[animation-play-state:paused]!"
-            :class="col % 2 ? 'animate-vertical-scroll-up' : 'animate-vertical-scroll-down'"
+            :class="
+              mounted && (col % 2 ? 'animate-vertical-scroll-up' : 'animate-vertical-scroll-down')
+            "
             :style="{ animationDuration: `${150 + col * 10}s` }"
           >
             <div
               v-for="(tech, i) in columnList(col)"
               :key="`${tech.name}-${col}-${i}`"
               class="p-4 rounded-xl bg-card border border-card-border group hover:border-accent/60 transition-colors duration-300 flex flex-col items-center justify-center gap-2 h-28 shrink-0"
-              :aria-hidden="col !== 1 || i >= shuffled.length"
+              :aria-hidden="col !== 1 || i >= technologies.length"
             >
               <component
                 :is="tech.icon"

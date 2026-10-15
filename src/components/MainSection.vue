@@ -21,8 +21,9 @@ const roles = [
   'Python',
 ]
 
-const role = ref(roles[0]!)
-let roleIndex = 0
+// Começa em Fullstack: é o que fica no HTML gerado, que buscadores e IAs leem sem rodar a animação
+let roleIndex = roles.indexOf('Fullstack')
+const role = ref(roles[roleIndex]!)
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))

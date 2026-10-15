@@ -55,10 +55,10 @@ const hashtags = ['FrontEnd', 'BackEnd', 'FullStack', 'TypeScript', 'Python']
           class="space-y-4 text-fg-muted text-base md:text-lg leading-relaxed max-w-[62ch] relative z-10 md:pr-16 [&_b]:font-semibold [&_b]:text-fg-soft"
         >
           <p>
-            Me chamo Matheus, tenho {{ age }} anos, sou do Rio de Janeiro, Brasil. Sou desenvolvedor
-            <b>full stack</b>, atualmente trabalhando com <b>front-end</b>, com forte domínio de
-            <b>TypeScript</b>, {{ experience.years }} anos e {{ experience.months }} meses de
-            experiência profissional.
+            Me chamo Matheus Possidonio, tenho {{ age }} anos, sou do Rio de Janeiro, Brasil. Sou
+            desenvolvedor <b>full stack</b>, atualmente trabalhando com <b>front-end</b>, com forte
+            domínio de <b>TypeScript</b>, {{ experience.years }} anos e
+            {{ experience.months }} meses de experiência profissional.
           </p>
           <p>
             Minha especialidade é o ecossistema <b>JavaScript</b>, mas minha curiosidade não tem

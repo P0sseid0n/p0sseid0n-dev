@@ -8,8 +8,10 @@ import TechSection from './components/TechSection.vue'
 import ProjectSection from './components/ProjectSection.vue'
 import FooterContact from './components/FooterContact.vue'
 
-// Baixa a fonte junto com o CSS, em vez de só depois de o CSS ser lido
 useHead({
+  // Sem isso o vite-ssg gera o HTML com lang="en"
+  htmlAttrs: { lang: 'pt-BR' },
+  // Baixa a fonte junto com o CSS, em vez de só depois de o CSS ser lido
   link: [{ rel: 'preload', href: fontLatin, as: 'font', type: 'font/woff2', crossorigin: '' }],
 })
 </script>

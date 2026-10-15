@@ -1,0 +1,26 @@
+# Matheus Possidonio (P0sseid0n)
+
+> Desenvolvedor full stack do Rio de Janeiro, Brasil, que trabalha profissionalmente desde 2022. Atualmente atua com front-end, com forte domínio de TypeScript e do ecossistema JavaScript, e também usa Python. Está aberto a novas oportunidades e projetos.
+
+Matheus Possidonio usa o apelido P0sseid0n em todas as plataformas. Este é o portfólio pessoal dele.
+
+## Stack
+
+- Linguagens: TypeScript, JavaScript, Python, Go, Lua
+- Front-end: Vue.js, Nuxt, React, Next.js, React Native, Tailwind CSS, HTML, CSS/SCSS
+- Back-end: Node.js, Bun, Express, NestJS, AdonisJS
+- Bancos de dados: PostgreSQL, MySQL, MongoDB, Prisma
+- Testes: Jest, Vitest, Cypress
+- Ferramentas: Git, Docker, Linux, Vite, Webpack, ESLint, Prettier, Figma
+
+## Links
+
+- [Portfólio](https://p0sseid0n.dev/): sobre, tecnologias, projetos recentes e contato
+- [Projetos](https://p0sseid0n.dev/#projetos): projetos em destaque, puxados dos repositórios fixados no GitHub
+- [GitHub](https://github.com/P0sseid0n): código de todos os projetos
+- [LinkedIn](https://www.linkedin.com/in/matheus-possidonio/): experiência profissional
+- [X](https://x.com/notP0sseid0n)
+
+## Contato
+
+- E-mail: matheuspossidoniom@outlook.com (o jeito mais rápido de falar com ele)

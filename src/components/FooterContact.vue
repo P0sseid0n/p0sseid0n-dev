@@ -3,6 +3,7 @@ import IconMail from '~icons/material-symbols/mail'
 import IconDownload from '~icons/material-symbols/download'
 import IconGithub from '~icons/simple-icons/github'
 import IconLinkedin from '~icons/simple-icons/linkedin'
+import IconX from '~icons/simple-icons/x'
 import AnimationMagnet from './AnimationMagnet.vue'
 
 const year = new Date().getFullYear()
@@ -49,7 +50,7 @@ const year = new Date().getFullYear()
           class="flex size-11 items-center justify-center rounded-lg text-fg-muted hover:text-accent hover:bg-card transition-colors"
           href="https://github.com/P0sseid0n"
           target="_blank"
-          rel="noopener"
+          rel="me noopener"
         >
           <span class="sr-only">GitHub</span>
           <IconGithub class="size-6" />
@@ -58,10 +59,19 @@ const year = new Date().getFullYear()
           class="flex size-11 items-center justify-center rounded-lg text-fg-muted hover:text-accent hover:bg-card transition-colors"
           href="https://www.linkedin.com/in/matheus-possidonio/"
           target="_blank"
-          rel="noopener"
+          rel="me noopener"
         >
           <span class="sr-only">LinkedIn</span>
           <IconLinkedin class="size-6" />
+        </a>
+        <a
+          class="flex size-11 items-center justify-center rounded-lg text-fg-muted hover:text-accent hover:bg-card transition-colors"
+          href="https://x.com/notP0sseid0n"
+          target="_blank"
+          rel="me noopener"
+        >
+          <span class="sr-only">X (Twitter)</span>
+          <IconX class="size-6" />
         </a>
       </div>
       <div class="mt-10 text-xs text-fg-subtle font-mono">
