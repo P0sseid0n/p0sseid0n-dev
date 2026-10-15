@@ -21,7 +21,7 @@ const { theme, toggleTheme } = useTheme()
 
 <template>
   <header
-    class="fixed top-0 z-50 w-full border-b border-card-border bg-background/80 backdrop-blur-md"
+    class="fixed top-0 z-50 w-full border-b border-card-border bg-background"
     @keydown.esc="menuOpen = false"
   >
     <div class="mx-auto flex h-16 max-w-240 items-center justify-between px-4 lg:px-0">
