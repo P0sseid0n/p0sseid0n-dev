@@ -112,7 +112,8 @@ onUnmounted(() => {
         <p class="font-mono text-base md:text-lg">Olá, eu sou</p>
         <span class="h-px w-8 bg-accent/50"></span>
       </div>
-      <div class="relative">
+      <!-- No celular o adesivo fica preso à coluna, não ao nome: não sai da tela nem anda durante a digitação -->
+      <div class="relative mt-3 w-full max-w-sm md:mt-0 md:w-auto md:max-w-none">
         <h1
           class="text-6xl md:text-8xl lg:text-9xl font-bold text-fg leading-[0.9] tracking-[-0.045em]"
         >
@@ -120,7 +121,7 @@ onUnmounted(() => {
           }}<span class="text-accent" :class="!nameTyping && 'animate-terminal-caret'">_</span>
         </h1>
         <button
-          class="absolute -right-20 top-0 md:-right-16 md:top-4 md:bottom-auto rotate-6 md:rotate-12 opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
+          class="absolute right-0 -top-9 md:-right-16 md:top-4 rotate-6 md:rotate-12 opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
           type="button"
           @click="toggleName"
         >
