@@ -17,7 +17,7 @@ useHead({
 </script>
 
 <template>
-  <div class="grain relative flex h-auto min-h-dvh w-full flex-col bg-background overflow-x-hidden">
+  <div class="grain relative flex h-auto min-h-dvh w-full flex-col bg-background overflow-x-clip">
     <TopBar />
 
     <main id="conteudo" tabindex="-1" class="outline-none">
