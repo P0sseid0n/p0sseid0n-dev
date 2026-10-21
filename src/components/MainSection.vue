@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, type Ref } from 'vue'
 import IconSync from '~icons/material-symbols/sync'
+import IconArrowDownward from '~icons/material-symbols/arrow-downward'
 import { prefersReducedMotion } from '@/utils/motion'
 
 const currentName = ref('P0sseid0n')
@@ -42,27 +43,40 @@ async function toggleText(text: string, refVar: Ref<string>) {
     return
   }
 
-  const TYPE_SPEED = 130
-  const ERASE_SPEED = 70
-
+  // Backspace segurado: o primeiro toque demora e a repetição acelera
+  let eraseDelay = 140
   while (refVar.value.length > 0) {
     refVar.value = refVar.value.slice(0, -1)
-    await sleep(ERASE_SPEED)
+    await sleep(eraseDelay)
     if (cancelled()) return
+    eraseDelay = Math.max(35, eraseDelay * 0.7)
   }
+
+  // Pausa de quem pensa antes de começar a digitar
+  await sleep(250)
+  if (cancelled()) return
 
   for (const char of text) {
     refVar.value += char
-    await sleep(TYPE_SPEED)
+    // Ritmo irregular, e maiúsculas e números (Shift, fileira de cima) levam mais tempo
+    const reach = /[A-Z0-9]/.test(char) ? 70 : 0
+    await sleep(60 + Math.random() * 110 + reach)
     if (cancelled()) return
   }
 }
 
-function toggleName() {
-  targetName.value = otherName.value
-  toggleText(targetName.value, currentName)
+// Enquanto o nome está sendo digitado o cursor fica aceso, como num terminal
+const nameTyping = ref(false)
+let nameRun = 0
 
+async function toggleName() {
+  targetName.value = otherName.value
   rotationIcon.value += 360
+
+  const run = ++nameRun
+  nameTyping.value = true
+  await toggleText(targetName.value, currentName)
+  if (run === nameRun) nameTyping.value = false
 }
 
 const HOLD_TIME = 4_500
@@ -85,11 +99,14 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section class="relative w-full pt-24 pb-28 md:pt-44 md:pb-48">
+  <!-- Ocupa a tela toda; o pt desconta o header fixo e o pb guarda espaço para os cantos -->
+  <section class="relative flex min-h-svh w-full items-center pt-24 pb-28">
     <div
       class="absolute inset-0 z-0 bg-grid-pattern opacity-20 light:opacity-60 pointer-events-none"
     ></div>
-    <div class="relative z-10 mx-auto flex max-w-240 flex-col items-center gap-6 px-4 text-center">
+    <div
+      class="relative z-10 mx-auto flex w-full max-w-240 flex-col items-center gap-6 px-4 text-center"
+    >
       <div class="flex items-center gap-4 text-accent">
         <span class="h-px w-8 bg-accent/50"></span>
         <p class="font-mono text-base md:text-lg">Olá, eu sou</p>
@@ -99,7 +116,8 @@ onUnmounted(() => {
         <h1
           class="text-6xl md:text-8xl lg:text-9xl font-bold text-fg leading-[0.9] tracking-[-0.045em]"
         >
-          {{ currentName }}<span class="text-accent animate-terminal-caret">_</span>
+          {{ currentName
+          }}<span class="text-accent" :class="!nameTyping && 'animate-terminal-caret'">_</span>
         </h1>
         <button
           class="absolute -right-20 top-0 md:-right-16 md:top-4 md:bottom-auto rotate-6 md:rotate-12 opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
@@ -142,6 +160,21 @@ onUnmounted(() => {
         </a>
       </div>
     </div>
+
+    <div class="absolute bottom-6 left-4 z-10 text-sm md:left-8">
+      <p class="font-mono text-xs text-fg-subtle">~/status</p>
+      <p class="flex items-center gap-2 font-medium text-fg-soft">
+        <span class="size-2 rounded-full bg-accent"></span>
+        Disponível para projetos
+      </p>
+    </div>
+    <a
+      class="absolute bottom-6 right-4 z-10 flex items-center gap-1 font-mono text-xs text-fg-soft transition-colors hover:text-accent md:right-8"
+      href="#sobre"
+    >
+      role<span class="sr-only"> até a seção Sobre</span>
+      <IconArrowDownward class="animate-bounce text-base" />
+    </a>
   </section>
 </template>
 
