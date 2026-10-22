@@ -44,6 +44,10 @@ const extras: Record<string, Partial<Pick<Project, 'title' | 'technologies' | 'p
       'IA generativa',
     ],
   },
+  MultiLinkBalancer: {
+    title: 'MultiLink Balancer',
+    technologies: ['C#', '.NET Framework', 'Svelte', 'Vite', 'WebView2', 'tun2socks'],
+  },
 }
 
 // O próprio portfólio não aparece na lista de projetos
