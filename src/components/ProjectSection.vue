@@ -114,7 +114,11 @@ const reposUrl = 'https://github.com/P0sseid0n?tab=repositories'
             {{ project.stars }}
           </a>
         </div>
-        <p class="text-fg-muted text-[0.9375rem] leading-relaxed mb-6 grow">
+        <!-- Com duas colunas, limitar as linhas evita espaço vazio no card ao lado -->
+        <p
+          class="text-fg-muted text-[0.9375rem] leading-relaxed mb-6 grow md:line-clamp-3"
+          :title="project.description"
+        >
           {{ project.description }}
         </p>
         <ul class="flex flex-wrap gap-2 mb-4">
