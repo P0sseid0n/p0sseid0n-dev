@@ -49,8 +49,13 @@ const extras: Record<string, Partial<Pick<Project, 'title' | 'technologies' | 'p
 // O próprio portfólio não aparece na lista de projetos
 const ignored = ['p0sseid0n-dev']
 
+// O grid tem duas colunas: até 3 projetos o card "Ver mais" fecha a última linha;
+// com 4 ele sobe para o título e o grid fica 2×2. Acima disso, corta.
+const MAX_PROJECTS = 4
+
 const projects: Project[] = pinnedRepos
   .filter((repo) => !ignored.includes(repo.name))
+  .slice(0, MAX_PROJECTS)
   .map((repo) => {
     const extra = extras[repo.name] ?? {}
     return {
@@ -64,11 +69,27 @@ const projects: Project[] = pinnedRepos
       previewLink: extra.previewLink ?? repo.homepage ?? undefined,
     }
   })
+
+const moreInTitle = projects.length === MAX_PROJECTS
+const reposUrl = 'https://github.com/P0sseid0n?tab=repositories'
 </script>
 
 <template>
   <section class="w-full max-w-240 mx-auto px-4 pt-16 pb-20" id="projetos">
-    <SectionTitle path="projetos">Projetos recentes</SectionTitle>
+    <SectionTitle path="projetos">
+      Projetos recentes
+      <template v-if="moreInTitle" #action>
+        <a
+          class="flex items-center gap-1 font-mono text-sm text-fg-subtle hover:text-accent transition-colors"
+          :href="reposUrl"
+          target="_blank"
+          rel="noopener"
+        >
+          Ver mais no GitHub
+          <IconArrowOutward class="text-base" />
+        </a>
+      </template>
+    </SectionTitle>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <article
         v-for="project in projects"
@@ -125,8 +146,9 @@ const projects: Project[] = pinnedRepos
       </article>
 
       <a
+        v-if="!moreInTitle"
         class="flex min-h-48 flex-col h-full rounded-2xl border border-dashed border-border-strong/60 bg-transparent p-6 items-center justify-center gap-4 group hover:border-accent hover:bg-card/50 transition-colors duration-300"
-        href="https://github.com/P0sseid0n?tab=repositories"
+        :href="reposUrl"
         target="_blank"
         rel="noopener"
       >

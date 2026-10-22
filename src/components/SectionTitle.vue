@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-  <header class="mb-8 flex items-end gap-6">
+  <header class="mb-8 flex flex-wrap items-end gap-x-6 gap-y-3">
     <div>
       <p class="mb-2 font-mono text-xs text-accent">
         <span class="text-fg-subtle">~/</span>{{ path }}
@@ -15,5 +15,8 @@ defineProps<{
       </h2>
     </div>
     <div class="mb-3 hidden h-px flex-1 bg-card-border sm:block"></div>
+    <div v-if="$slots.action" class="mb-1.5">
+      <slot name="action" />
+    </div>
   </header>
 </template>
