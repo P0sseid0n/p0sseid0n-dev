@@ -116,7 +116,7 @@ const reposUrl = 'https://github.com/P0sseid0n?tab=repositories'
         </div>
         <!-- Com duas colunas, limitar as linhas evita espaço vazio no card ao lado -->
         <p
-          class="text-fg-muted text-[0.9375rem] leading-relaxed mb-6 grow md:line-clamp-3"
+          class="text-fg-muted text-[0.9375rem] leading-relaxed mb-6 grow md:line-clamp-4"
           :title="project.description"
         >
           {{ project.description }}
